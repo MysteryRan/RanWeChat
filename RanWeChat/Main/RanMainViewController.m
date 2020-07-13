@@ -16,8 +16,10 @@
 #import "RanLastMessageModal.h"
 #import "RanChatDetialCell.h"
 
+#import "RanLastTalkHeaderCell.h"
 
-@interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate>
+
+@interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate>
 
 @property (weak) IBOutlet NSView *leftMainBar;
 
@@ -39,17 +41,22 @@
     self.leftMainBar.wantsLayer = YES;
     self.leftMainBar.layer.backgroundColor = [NSColor colorWithSRGBRed:31 / 255.0 green:140 / 255.0 blue:235 / 255.0 alpha:1].CGColor;
     
-    // header
-    RanHeaderCell *headerCell = [[RanHeaderCell alloc] init];
+    self.ranLastTalkTableView.allowsMultipleSelection = YES;
+    
+    RanLastTalkHeaderCell *headerCell = [[RanLastTalkHeaderCell alloc] init];
+    headerCell.stringValue = @"";
     self.ranLastTalkTableView.tableColumns[0].headerCell = headerCell;
     
     NSTableHeaderView *header = self.ranLastTalkTableView.headerView;
+    NSView *searchView = [[NSView alloc] init];
+    searchView.frame = CGRectMake(0, 0, header.frame.size.width, header.frame.size.height);
+    searchView.wantsLayer = YES;
+    searchView.layer.backgroundColor = [NSColor redColor].CGColor;
+    [header addSubview:searchView];
     NSRect rect = header.frame;
-    headerCell.stringValue = @"";
-    header.frame = NSMakeRect(rect.origin.x, rect.origin.y, rect.size.width, 60);
-    header.layer.backgroundColor = [NSColor whiteColor].CGColor;
+    header.frame = NSMakeRect(rect.origin.x, rect.origin.y, rect.size.width, 54);
+    header.layer.backgroundColor = [NSColor grayColor].CGColor;
     
-    self.ranLastTalkTableView.allowsMultipleSelection = YES;
     // 最近通话数组
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *plistPath = [bundle pathForResource:@"lasttalklist" ofType:@"plist"];
@@ -70,6 +77,7 @@
         RanLastMessageModal *modal = [RanLastMessageModal initWithPlist:modalDic];
         [self.detialArray addObject:modal];
     }
+    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
     [self.detialChatTableView reloadData];
     
 }
@@ -161,6 +169,36 @@
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     RanVideoChatWindow *imWindowController = [storyboard instantiateControllerWithIdentifier:@"video"];
     [imWindowController showWindow:nil];
+}
+
+- (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+    // 回车
+    if (commandSelector == @selector(insertNewline:)) {
+        NSLog(@"%@",textView.string);
+        
+        return YES;
+    } else if (commandSelector == @selector(deleteBackward:)) {
+        //Do something against DELETE key
+        if (textView.string.length == 0) {
+            return YES;
+        }
+       
+        NSMutableString *finalStr = [NSMutableString stringWithString:textView.string];
+        NSRange deleteRange = {[finalStr length] - 1, 1};
+
+        [finalStr deleteCharactersInRange:deleteRange];
+        
+        textView.string = finalStr;
+        NSLog(@"%@",textView.string);
+       return YES;
+
+    } else if (commandSelector == @selector(insertTab:)) {
+        //Do something against TAB key
+        NSLog(@"%@",textView.string);
+
+        return YES;
+    }
+    return YES;
 }
 
 

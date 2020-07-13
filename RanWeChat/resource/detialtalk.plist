@@ -18,13 +18,17 @@
 		<key>messagetype</key>
 		<integer>0</integer>
 		<key>mediatype</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>name</key>
 		<string>最近联系人小徐</string>
 		<key>time</key>
 		<string>2:03:39</string>
 		<key>content</key>
-		<string>是都以二觉防护二号位偶然间诶我UR和欧委会如和我 挖偶尔乌尔基欧威尔或维护人ue我让霍尔五花肉偶尔五花肉欧委会若维护若额外很柔我和若额外然后偶尔无人活儿好偶尔活儿好隇欧无人活儿荷藕我热火额外热火额外狠人偶尔无人或微软货物而后入好</string>
+		<string>video-chat</string>
+        <key>imageWidth</key>
+        <string>614</string>
+        <key>imageHeight</key>
+        <string>1088</string>
 	</dict>
 	<dict>
 		<key>messagetype</key>

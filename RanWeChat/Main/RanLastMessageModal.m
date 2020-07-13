@@ -16,16 +16,29 @@
     message.name = dic[@"name"];
     message.content = dic[@"content"];
     message.time = dic[@"time"];
-    message.mediaType = [self mediaTypeCheck:[dic[@"messagetype"] integerValue]];
+    message.imageWidth = dic[@"imageWidth"];
+    message.imageHeight = dic[@"imageHeight"];
+    message.mediaType = [self mediaTypeCheck:[dic[@"mediatype"] integerValue]];
     message.messageType = [self messageTypeCheck:[dic[@"messagetype"] integerValue]];
-    CGFloat width1 = [message.content boundingRectWithSize:CGSizeMake(MAXFLOAT, 72) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14]} context:nil].size.width;
-    if (width1 > 280) {
-        width1 = 280;
+    CGFloat width = 0;
+    CGFloat height = 0;
+    if (message.mediaType == MediaTypeText) {
+        width = [message.content boundingRectWithSize:CGSizeMake(MAXFLOAT, 72) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14]} context:nil].size.width;
+        if (width > 280) {
+            width = 280;
+        }
+        height = [message.content boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14]} context:nil].size.height;
+    } else if (message.mediaType == MediaTypePhoto) {
+        width =  [dic[@"imageWidth"] floatValue];
+        height = [dic[@"imageHeight"] floatValue];
+        if (width > 280) {
+            height = height / (width / 280);
+            width = 280;
+        }
+        NSLog(@"%f====%f",width,height);
     }
-    CGFloat height = [message.content boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14]} context:nil].size.height;
-    NSLog(@" 宽 %lf======= 高  %lf",width1, height);
     message.contentHeight = height + 20;
-    message.contentWidth = width1;
+    message.contentWidth = width;
     
     return message;
 }

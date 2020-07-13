@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, MediaType) {
 @property (nonatomic, copy)NSString *name;
 @property (nonatomic, copy)NSString *time;
 @property (nonatomic, copy)NSString *content;
+@property (nonatomic, copy)NSString *imageWidth;
+@property (nonatomic, copy)NSString *imageHeight;
 
 @property (nonatomic, assign)MediaType mediaType;
 @property (nonatomic, assign)MessageType messageType;

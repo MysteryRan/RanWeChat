@@ -64,7 +64,7 @@
     NSTextField *contentTF = [[NSTextField alloc] init];
     contentTF.selectable = YES;
     contentTF.drawsBackground = NO;
-    contentTF.backgroundColor = [NSColor clearColor];
+    contentTF.backgroundColor = [NSColor blueColor];
     contentTF.bordered = NO;
     [contentTF sizeToFit];
     contentTF.maximumNumberOfLines = 0;
@@ -100,7 +100,7 @@
     }
 
 
-    // 内容
+    // 文字内容
     if (modal.mediaType == MediaTypeText) {
         [contentTF mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(bubbleImageView).with.offset(10);
@@ -108,14 +108,24 @@
             make.width.mas_equalTo(modal.contentWidth);
             make.height.mas_equalTo(modal.contentHeight);
         }];
-    } else {
-        [contentTF mas_makeConstraints:^(MASConstraintMaker *make) {
+    // 图片内容
+    } else if (modal.mediaType == MediaTypePhoto) {
+        NSImageView *imageV = [[NSImageView alloc] init];
+        imageV.imageScaling = NSImageScaleAxesIndependently;
+        imageV.image = [NSImage imageNamed:modal.content];
+        imageV.wantsLayer = YES;
+        imageV.layer.backgroundColor = [NSColor redColor].CGColor;
+        [bubbleImageView addSubview:imageV];
+        [imageV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(bubbleImageView).with.offset(10);
             make.top.equalTo(bubbleImageView).with.offset(10);
             make.width.mas_equalTo(modal.contentWidth);
             make.height.mas_equalTo(modal.contentHeight);
         }];
+        
     }
+    
+   
 }
 
 @end
