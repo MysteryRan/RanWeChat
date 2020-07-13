@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>time</key>
+        <string>2:03:39</string>
+		<key>content</key>
+		<string>最近的消息</string>
+		<key>name</key>
+		<string>最近联系人小徐</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>最近联系人小李</string>
+        <key>time</key>
+        <string>03:39</string>
+        <key>content</key>
+        <string>小李最近的消息</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>最近联系人小王</string>
+        <key>time</key>
+        <string>02:03:39</string>
+        <key>content</key>
+        <string>小王最近的消息</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>最近联系人小张</string>
+        <key>time</key>
+        <string>03:39</string>
+        <key>content</key>
+        <string>小张最近的消息</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>最近联系人小罗</string>
+        <key>time</key>
+        <string>02:03:39</string>
+        <key>content</key>
+        <string>小罗最近的消息</string>
+	</dict>
+</array>
+</plist>
