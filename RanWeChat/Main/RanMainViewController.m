@@ -86,8 +86,25 @@
     [self.detialChatTableView reloadData];
     [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
     
-    
-    
+    // 右键删除菜单
+    NSMenu *ranMenu = [[NSMenu alloc] init];
+    NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"xx" action:@selector(playMusic:) keyEquivalent:@""];
+    NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteRow:) keyEquivalent:@""];
+    NSMenuItem *item3 = [[NSMenuItem alloc] initWithTitle:@"xxx" action:@selector(playNextMusic:) keyEquivalent:@""];
+    [item1 setTarget:self];
+    [item2 setTarget:self];
+    [item3 setTarget:self];
+    [ranMenu addItem:item1];
+    [ranMenu addItem:[NSMenuItem separatorItem]];
+    [ranMenu addItem:item2];
+    [ranMenu addItem:[NSMenuItem separatorItem]];
+    [ranMenu addItem:item3];
+    self.ranLastTalkTableView.menu = ranMenu;
+}
+
+- (void)deleteRow:(id)sender {
+    [self.lasttalkArray removeObjectAtIndex:self.ranLastTalkTableView.selectedRow];
+    [self.ranLastTalkTableView reloadData];
 }
 
 - (void)dragMoveIn {

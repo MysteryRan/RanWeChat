@@ -43,22 +43,19 @@
 
 }
 
+-(void)rightMouseDown:(NSEvent *)event {
+    [super rightMouseDown:event];
+     [NSMenu popUpContextMenu:menu withEvent:event forView:self];
 
+}
 
-
-//-(void)rightMouseDown:(NSEvent *)event {
-//    [super rightMouseDown:event];
-//     [NSMenu popUpContextMenu:menu withEvent:event forView:self];
-//
-//}
-
-//-(void)handleItem:(NSMenuItem *)item{
-//    NSLog(@"123");
-////    item.state = item.state == NSControlStateValueOn ? NSControlStateValueOff : NSControlStateValueOn;
+-(void)handleItem:(NSMenuItem *)item{
+    NSLog(@"123");
+//    item.state = item.state == NSControlStateValueOn ? NSControlStateValueOff : NSControlStateValueOn;
 //    if ([self.delegate respondsToSelector:@selector(cooking)]) {
 //        return [self.delegate cooking];
 //    }
-//}
+}
 
 
 @end
