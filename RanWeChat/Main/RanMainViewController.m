@@ -103,19 +103,29 @@
 
 - (void)dragDown:(NSArray *)files {
     NSLog(@"%@",files);
-
-
-
-//    @property (nonatomic, assign)CGFloat contentHeight;
-//    @property (nonatomic, assign)CGFloat contentWidth;
-    NSLog(@"%@",self.detialArray);
-    for (NSString *l in files) {
-        
+    
+    for (NSString *imageStr in files) {
+        RanLastMessageModal *modal = [RanLastMessageModal new];
+        modal.name = @"aaa";
+        modal.time = @"sdsd";
+        modal.content = imageStr;
+        NSImage *ttimage = [[NSImage alloc] initWithContentsOfFile:imageStr];
+        modal.imageWidth = [NSString stringWithFormat:@"%f",ttimage.size.width];
+        modal.imageHeight = [NSString stringWithFormat:@"%f",ttimage.size.height];
+        CGFloat width = ttimage.size.width;
+        CGFloat height = ttimage.size.height;
+        if (width > 280) {
+            height = height / (width / 280);
+            width = 280;
+        }
+        modal.contentHeight = height + 20;
+        modal.contentWidth =  width;
+        modal.mediaType = 1;
+        modal.messageType = 1;
+        [self.detialArray addObject:modal];
     }
-     NSLog(@"%@",self.detialArray);
-    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
     [self.detialChatTableView reloadData];
-//    self.sendCoverView.hidden = YES;
+    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
 }
 
 
@@ -204,51 +214,10 @@
 
 // 弹出聊天窗口
 - (IBAction)videoChatClick:(NSButton *)sender {
-    /* 发送图片
-    RanLastMessageModal *modal = [RanLastMessageModal new];
-    modal.name = @"aaa";
-    modal.time = @"sdsd";
-    modal.content = @"/Users/zouran/Desktop/login.png";
-    NSImage *ttimage = [[NSImage alloc] initWithContentsOfFile:@"/Users/zouran/Desktop/login.png"];
-    modal.imageWidth = [NSString stringWithFormat:@"%f",ttimage.size.width];
-    modal.imageHeight = [NSString stringWithFormat:@"%f",ttimage.size.height];
-    CGFloat width = ttimage.size.width;
-    CGFloat height = ttimage.size.height;
-    
-    if (width > 280) {
-        height = height / (width / 280);
-        width = 280;
-    }
-    modal.contentHeight = height + 20;
-    modal.contentWidth =  width;
-    modal.mediaType = 1;
-    modal.messageType = 1;
-    [self.detialArray addObject:modal];
-    [self.detialChatTableView reloadData];
-    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
-    */
-    
-    /* 改变状态
-     
-     
-     
-     
-     */
-    
-//    [self setValue:<#(nullable id)#> forKeyPath:<#(nonnull NSString *)#>]
-//    RanContactRowView *rowView = [self.detialChatTableView rowViewAtRow:0 makeIfNecessary:YES];
-//    RanLastMessageModal *modal = self.detialArray[self.detialArray.count - 1];
-//    modal.sendStatus = FailStatus;
-//    [self.detialChatTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:self.detialArray.count - 1]
-//    columnIndexes:[NSIndexSet indexSetWithIndex:0]];
-//    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
-    
-    return;
-    /*
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     RanVideoChatWindow *imWindowController = [storyboard instantiateControllerWithIdentifier:@"video"];
     [imWindowController showWindow:nil];
-     */
+    
 }
 
 - (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {

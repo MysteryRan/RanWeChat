@@ -11,7 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 @import SocketIO;
 
-@interface RanVideChatController ()<RTCPeerConnectionDelegate,AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface RanVideChatController ()<RTCPeerConnectionDelegate,AVCaptureVideoDataOutputSampleBufferDelegate,NSWindowDelegate>
 
 // 本地的数据流
 @property (weak) IBOutlet RTCMTLNSVideoView *localPreviewView;
@@ -59,8 +59,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self localImage];
-    [self createConnection];
+//    [self localImage];
+//    [self createConnection];
     
     NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.20.113:9000/socket.io"];
     self.manager = [[SocketManager alloc] initWithSocketURL:url config:@{@"log": @NO, @"compress": @NO}];
@@ -470,9 +470,11 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
 }
 
 - (IBAction)endCallClick:(NSButton *)sender {
-//    [self.capture stopCapture];
-//    [self.socket disconnect];
-    [self sendOffer];
+    [self.captureSession stopRunning];
+    [self.socket disconnect];
+    [self.view.window orderOut:nil];
+    [self.view.window close];
+    
 }
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
@@ -503,6 +505,11 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
             [self.localStream addVideoTrack:videoTrack];
                 
         }
+    
+}
+
+
+- (void)windowWillClose:(NSNotification *)notification {
     
 }
 
