@@ -4,7 +4,9 @@
 
 ## 已完成功能:
  ### 1.登录界面的搭建。
+![登录界面](https://github.com/MysteryRan/RanWeChat/blob/master/login.png "登录界面")
  ### 2.最近通话列表,与对话详情(文本)列表的展示。
+![主界面](https://github.com/MysteryRan/RanWeChat/blob/master/main-view.png "主界面")
  ### 3.音视频通话。
    
     这里感谢Jhuster,https://github.com/Jhuster/RTCStartupDemo 提供的WebRTC本地信令服务器。
