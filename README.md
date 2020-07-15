@@ -8,7 +8,7 @@
  ### 2.最近通话列表,与对话详情(文本)列表的展示。
 ![主界面](https://github.com/MysteryRan/RanWeChat/blob/master/main-view.png "主界面")
 ![发送文本消息与重发](https://github.com/MysteryRan/RanWeChat/blob/master/send-resend.gif "发送消息")
-
+![拖拽发送图片](https://github.com/MysteryRan/RanWeChat/blob/master/dragsend.gif "发送消息")
  ### 3.音视频通话。
     这里感谢Jhuster,https://github.com/Jhuster/RTCStartupDemo 提供的WebRTC本地信令服务器。
 ![音视频通话](https://github.com/MysteryRan/RanWeChat/blob/master/video-chat.png "音视频通话")
