@@ -11,9 +11,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol resendDelegate<NSObject>
+
+- (void)resendWith:(RanLastMessageModal *)modal;
+
+
+@end
+
 @interface RanChatDetialCell : NSTableCellView
 
 @property(nonatomic, strong)RanLastMessageModal *modal;
+
+@property(nonatomic, weak)id<resendDelegate>delegate;
 
 @end
 

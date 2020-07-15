@@ -20,7 +20,7 @@
 #import "RanDragTableView.h"
 
 
-@interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate,ranDragFileDlegate>
+@interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate,ranDragFileDlegate,resendDelegate>
 
 @property (weak) IBOutlet NSView *leftMainBar;
 
@@ -83,6 +83,8 @@
     
     // 拖拽代理
     self.detialChatTableView.dragDelegate = self;
+    [self.detialChatTableView reloadData];
+    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
     
     
     
@@ -135,6 +137,7 @@
         return cell;
     } else {
         RanChatDetialCell *cell = [tableView makeViewWithIdentifier:@"cell" owner:self];
+        cell.delegate = self;
         cell.modal = self.detialArray[row];
         return cell;
     }
@@ -150,7 +153,7 @@
         }
         return rowView;
     } else {
-        return NULL;
+        return nil;
     }
 }
 
@@ -201,6 +204,7 @@
 
 // 弹出聊天窗口
 - (IBAction)videoChatClick:(NSButton *)sender {
+    /* 发送图片
     RanLastMessageModal *modal = [RanLastMessageModal new];
     modal.name = @"aaa";
     modal.time = @"sdsd";
@@ -208,7 +212,6 @@
     NSImage *ttimage = [[NSImage alloc] initWithContentsOfFile:@"/Users/zouran/Desktop/login.png"];
     modal.imageWidth = [NSString stringWithFormat:@"%f",ttimage.size.width];
     modal.imageHeight = [NSString stringWithFormat:@"%f",ttimage.size.height];
-    
     CGFloat width = ttimage.size.width;
     CGFloat height = ttimage.size.height;
     
@@ -218,25 +221,59 @@
     }
     modal.contentHeight = height + 20;
     modal.contentWidth =  width;
-
     modal.mediaType = 1;
     modal.messageType = 1;
     [self.detialArray addObject:modal];
-    
-    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
     [self.detialChatTableView reloadData];
+    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
+    */
+    
+    /* 改变状态
+     
+     
+     
+     
+     */
+    
+//    [self setValue:<#(nullable id)#> forKeyPath:<#(nonnull NSString *)#>]
+//    RanContactRowView *rowView = [self.detialChatTableView rowViewAtRow:0 makeIfNecessary:YES];
+//    RanLastMessageModal *modal = self.detialArray[self.detialArray.count - 1];
+//    modal.sendStatus = FailStatus;
+//    [self.detialChatTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:self.detialArray.count - 1]
+//    columnIndexes:[NSIndexSet indexSetWithIndex:0]];
+//    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
     
     return;
+    /*
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     RanVideoChatWindow *imWindowController = [storyboard instantiateControllerWithIdentifier:@"video"];
     [imWindowController showWindow:nil];
+     */
 }
 
 - (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
     // 回车
     if (commandSelector == @selector(insertNewline:)) {
-        NSLog(@"%@",textView.string);
-        
+        RanLastMessageModal *modal = [RanLastMessageModal new];
+        modal.name = textView.string;
+        modal.time = @"sdsd";
+        modal.content = [NSMutableString stringWithString:textView.string];;
+        modal.mediaType = 0;
+        modal.messageType = 1;
+        [self.detialArray addObject:modal];
+        [self.detialChatTableView reloadData];
+        [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
+        textView.string = @"";
+        [self.detialArray enumerateObjectsUsingBlock:^(RanLastMessageModal *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.time isEqualToString:@"sdsd"]) {
+                obj.sendStatus = FailStatus;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                   [self.detialChatTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:idx]
+                         columnIndexes:[NSIndexSet indexSetWithIndex:0]];
+                });
+ 
+            }
+        }];
         return YES;
     } else if (commandSelector == @selector(deleteBackward:)) {
         //Do something against DELETE key
@@ -261,6 +298,27 @@
     }
     return YES;
 }
+
+
+- (void)resendWith:(nonnull RanLastMessageModal *)modal {
+    [self.detialArray enumerateObjectsUsingBlock:^(RanLastMessageModal *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+               if (obj == modal) {
+                   obj.sendStatus = SendingStatus;
+                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                      [self.detialChatTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:idx]
+                            columnIndexes:[NSIndexSet indexSetWithIndex:0]];
+                       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                           obj.sendStatus = SuccessStatus;
+                          [self.detialChatTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:idx]
+                                columnIndexes:[NSIndexSet indexSetWithIndex:0]];
+                       });
+                   });
+    
+               }
+           }];
+    
+}
+
 
 
 @end

@@ -21,6 +21,12 @@ typedef NS_ENUM(NSUInteger, MediaType) {
     MediaTypeSystem,
 };
 
+typedef NS_ENUM(NSUInteger, SendStatus) {
+    SendingStatus = 0,
+    SuccessStatus,
+    FailStatus,
+};
+
 @interface RanLastMessageModal : NSObject
 
 @property (nonatomic, copy)NSString *name;
@@ -31,6 +37,7 @@ typedef NS_ENUM(NSUInteger, MediaType) {
 
 @property (nonatomic, assign)MediaType mediaType;
 @property (nonatomic, assign)MessageType messageType;
+@property (nonatomic, assign)SendStatus sendStatus;
 
 
 @property (nonatomic, assign)CGFloat contentHeight;

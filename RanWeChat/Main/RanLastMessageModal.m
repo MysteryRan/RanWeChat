@@ -37,7 +37,7 @@
         }
     }
     message.contentHeight = height + 20;
-    message.contentWidth = width;
+    message.contentWidth = width + 5;
     
     return message;
 }
@@ -56,6 +56,21 @@
         return MessageTypeReceive;
     }
     return MessageTypeSend;
+}
+
+- (void)setContent:(NSString *)content {
+    _content = content;
+    CGFloat width = 0;
+    CGFloat height = 0;
+    if (self.mediaType == MediaTypeText) {
+        width = [content boundingRectWithSize:CGSizeMake(MAXFLOAT, 72) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14]} context:nil].size.width;
+        if (width > 280) {
+            width = 280;
+        }
+        height = [content boundingRectWithSize:CGSizeMake(280, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14]} context:nil].size.height;
+    }
+    self.contentHeight = height + 20;
+    self.contentWidth = width + 10;
 }
 
 @end
