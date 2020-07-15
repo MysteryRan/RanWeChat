@@ -17,15 +17,17 @@
 #import "RanChatDetialCell.h"
 
 #import "RanLastTalkHeaderCell.h"
+#import "RanDragTableView.h"
 
 
-@interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate>
+@interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate,ranDragFileDlegate>
 
 @property (weak) IBOutlet NSView *leftMainBar;
 
 @property (weak) IBOutlet RanLastTalkTableView *ranLastTalkTableView;
-@property (weak) IBOutlet NSTableView *detialChatTableView;
+@property (weak) IBOutlet RanDragTableView *detialChatTableView;
 
+@property (weak) IBOutlet NSView *sendCoverView;
 
 
 @property(nonatomic, strong)NSMutableArray *lasttalkArray;
@@ -77,10 +79,43 @@
         RanLastMessageModal *modal = [RanLastMessageModal initWithPlist:modalDic];
         [self.detialArray addObject:modal];
     }
-    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
-    [self.detialChatTableView reloadData];
+
+    
+    // 拖拽代理
+    self.detialChatTableView.dragDelegate = self;
+    
+    
     
 }
+
+- (void)dragMoveIn {
+    self.sendCoverView.wantsLayer = YES;
+    self.sendCoverView.layer.backgroundColor = [NSColor grayColor].CGColor;
+//    self.sendCoverView.hidden = NO;
+}
+
+- (void)dragMoveOut {
+    
+//    self.sendCoverView.hidden = YES;
+}
+
+- (void)dragDown:(NSArray *)files {
+    NSLog(@"%@",files);
+
+
+
+//    @property (nonatomic, assign)CGFloat contentHeight;
+//    @property (nonatomic, assign)CGFloat contentWidth;
+    NSLog(@"%@",self.detialArray);
+    for (NSString *l in files) {
+        
+    }
+     NSLog(@"%@",self.detialArray);
+    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
+    [self.detialChatTableView reloadData];
+//    self.sendCoverView.hidden = YES;
+}
+
 
 #pragma mark NSTableView DataSource Delegate
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -125,16 +160,16 @@
     } else {
         return NO;
     }
-   
+    
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
-
+    
     
 }
 
 - (void)drawContextMenuHighlightForRow:(NSInteger)row {
-
+    
 }
 
 #pragma mark - 行高
@@ -166,6 +201,32 @@
 
 // 弹出聊天窗口
 - (IBAction)videoChatClick:(NSButton *)sender {
+    RanLastMessageModal *modal = [RanLastMessageModal new];
+    modal.name = @"aaa";
+    modal.time = @"sdsd";
+    modal.content = @"/Users/zouran/Desktop/login.png";
+    NSImage *ttimage = [[NSImage alloc] initWithContentsOfFile:@"/Users/zouran/Desktop/login.png"];
+    modal.imageWidth = [NSString stringWithFormat:@"%f",ttimage.size.width];
+    modal.imageHeight = [NSString stringWithFormat:@"%f",ttimage.size.height];
+    
+    CGFloat width = ttimage.size.width;
+    CGFloat height = ttimage.size.height;
+    
+    if (width > 280) {
+        height = height / (width / 280);
+        width = 280;
+    }
+    modal.contentHeight = height + 20;
+    modal.contentWidth =  width;
+
+    modal.mediaType = 1;
+    modal.messageType = 1;
+    [self.detialArray addObject:modal];
+    
+    [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
+    [self.detialChatTableView reloadData];
+    
+    return;
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     RanVideoChatWindow *imWindowController = [storyboard instantiateControllerWithIdentifier:@"video"];
     [imWindowController showWindow:nil];
@@ -182,20 +243,20 @@
         if (textView.string.length == 0) {
             return YES;
         }
-       
+        
         NSMutableString *finalStr = [NSMutableString stringWithString:textView.string];
         NSRange deleteRange = {[finalStr length] - 1, 1};
-
+        
         [finalStr deleteCharactersInRange:deleteRange];
         
         textView.string = finalStr;
         NSLog(@"%@",textView.string);
-       return YES;
-
+        return YES;
+        
     } else if (commandSelector == @selector(insertTab:)) {
         //Do something against TAB key
         NSLog(@"%@",textView.string);
-
+        
         return YES;
     }
     return YES;

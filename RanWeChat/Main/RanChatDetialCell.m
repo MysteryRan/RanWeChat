@@ -8,7 +8,14 @@
 
 #import "RanChatDetialCell.h"
 #import "Masonry.h"
-@interface RanLastMessageModal()
+
+@interface RanChatDetialCell()
+
+@property(nonatomic, strong)NSImageView *headerImageView;
+@property(nonatomic, strong)NSTextField *nameTF;
+@property(nonatomic, strong)NSTextField *contentTF;
+@property(nonatomic, strong)NSImageView *bubbleImageView;
+@property(nonatomic, strong)NSImageView *imageV;
 
 @end
 
@@ -23,76 +30,76 @@
 - (void)setModal:(RanLastMessageModal *)modal {
     _modal = modal;
     // 头像
-    NSImageView *headerImageView = [[NSImageView alloc] init];
-    [self addSubview:headerImageView];
-    headerImageView.image = [NSImage imageNamed:@"message_man_online"];
+    self.headerImageView = [[NSImageView alloc] init];
+    [self addSubview:self.headerImageView];
+    self.headerImageView.image = [NSImage imageNamed:@"message_man_online"];
     if (modal.messageType == MessageTypeSend) {
-        [headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).with.offset(10);
             make.top.equalTo(self).with.offset(10);
         }];
     } else {
-        [headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).with.offset(-10);
             make.top.equalTo(self).with.offset(10);
         }];
     }
     
     // 姓名
-    NSTextField *nameTF = [[NSTextField alloc] init];
-    nameTF.bordered = NO;
-    nameTF.stringValue = modal.name;
-    [nameTF sizeToFit];
-    [self addSubview:nameTF];
+    self.nameTF = [[NSTextField alloc] init];
+    self.nameTF.bordered = NO;
+    self.nameTF.stringValue = modal.name;
+    [self.nameTF sizeToFit];
+    [self addSubview:self.nameTF];
     
     if (modal.messageType == MessageTypeSend) {
-        nameTF.alignment = NSTextAlignmentLeft;
-        [nameTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(headerImageView.mas_right).with.offset(10);
-            make.top.equalTo(headerImageView);
+        self.nameTF.alignment = NSTextAlignmentLeft;
+        [self.nameTF mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.headerImageView.mas_right).with.offset(10);
+            make.top.equalTo(self.headerImageView);
         }];
     } else {
-        nameTF.alignment = NSTextAlignmentRight;
-        [nameTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.nameTF.alignment = NSTextAlignmentRight;
+        [self.nameTF mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(100);
-            make.right.equalTo(headerImageView.mas_left);
-            make.top.equalTo(headerImageView);
+            make.right.equalTo(self.headerImageView.mas_left);
+            make.top.equalTo(self.headerImageView);
         }];
     }
 
     
-    NSTextField *contentTF = [[NSTextField alloc] init];
-    contentTF.selectable = YES;
-    contentTF.drawsBackground = NO;
-    contentTF.backgroundColor = [NSColor blueColor];
-    contentTF.bordered = NO;
-    [contentTF sizeToFit];
-    contentTF.maximumNumberOfLines = 0;
-    contentTF.font = [NSFont systemFontOfSize:14];
-    contentTF.stringValue = modal.content;
-    [self addSubview:contentTF];
+    self.contentTF = [[NSTextField alloc] init];
+    self.contentTF.selectable = YES;
+    self.contentTF.drawsBackground = NO;
+    self.contentTF.backgroundColor = [NSColor blueColor];
+    self.contentTF.bordered = NO;
+    [self.contentTF sizeToFit];
+    self.contentTF.maximumNumberOfLines = 0;
+    self.contentTF.font = [NSFont systemFontOfSize:14];
+    self.contentTF.stringValue = modal.content;
+    [self addSubview:self.contentTF];
     // 气泡
-    NSImageView *bubbleImageView = [[NSImageView alloc] init];
-    bubbleImageView.wantsLayer = YES;
-    bubbleImageView.imageScaling = NSImageScaleAxesIndependently;
+    self.bubbleImageView = [[NSImageView alloc] init];
+    self.bubbleImageView.wantsLayer = YES;
+    self.bubbleImageView.imageScaling = NSImageScaleAxesIndependently;
     
-    [self addSubview:bubbleImageView];
-    [bubbleImageView addSubview:contentTF];
+    [self addSubview:self.bubbleImageView];
+    [self.bubbleImageView addSubview:self.contentTF];
     if (modal.messageType == MessageTypeSend) {
-        bubbleImageView.imageAlignment = NSImageAlignTopLeft;
-        bubbleImageView.image = [NSImage imageNamed:@"message_bubble_left"];
-        [bubbleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(nameTF);
-            make.top.equalTo(nameTF.mas_bottom).with.offset(5);
+        self.bubbleImageView.imageAlignment = NSImageAlignTopLeft;
+        self.bubbleImageView.image = [NSImage imageNamed:@"message_bubble_left"];
+        [self.bubbleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.nameTF);
+            make.top.equalTo(self.nameTF.mas_bottom).with.offset(5);
             make.width.mas_equalTo(modal.contentWidth+ 20);
             make.height.mas_equalTo(modal.contentHeight);
         }];
     } else {
-        bubbleImageView.imageAlignment = NSImageAlignTopRight;
-        bubbleImageView.image = [NSImage imageNamed:@"message_bubble_right"];
-        [bubbleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(headerImageView.mas_left);
-            make.top.equalTo(nameTF.mas_bottom).with.offset(5);
+        self.bubbleImageView.imageAlignment = NSImageAlignTopRight;
+        self.bubbleImageView.image = [NSImage imageNamed:@"message_bubble_right"];
+        [self.bubbleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.headerImageView.mas_left);
+            make.top.equalTo(self.nameTF.mas_bottom).with.offset(5);
             make.width.mas_equalTo(modal.contentWidth + 20);
             make.height.mas_equalTo(modal.contentHeight);
         }];
@@ -102,23 +109,27 @@
 
     // 文字内容
     if (modal.mediaType == MediaTypeText) {
-        [contentTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(bubbleImageView).with.offset(10);
-            make.top.equalTo(bubbleImageView).with.offset(10);
+        [self.contentTF mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.bubbleImageView).with.offset(10);
+            make.top.equalTo(self.bubbleImageView).with.offset(10);
             make.width.mas_equalTo(modal.contentWidth);
             make.height.mas_equalTo(modal.contentHeight);
         }];
     // 图片内容
     } else if (modal.mediaType == MediaTypePhoto) {
-        NSImageView *imageV = [[NSImageView alloc] init];
-        imageV.imageScaling = NSImageScaleAxesIndependently;
-        imageV.image = [NSImage imageNamed:modal.content];
-        imageV.wantsLayer = YES;
-        imageV.layer.backgroundColor = [NSColor redColor].CGColor;
-        [bubbleImageView addSubview:imageV];
-        [imageV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(bubbleImageView).with.offset(10);
-            make.top.equalTo(bubbleImageView).with.offset(10);
+        self.imageV = [[NSImageView alloc] init];
+        self.imageV.imageScaling = NSImageScaleAxesIndependently;
+        self.imageV.image = [NSImage imageNamed:modal.content];
+//        imageV.image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:@"/Users/zouran/Desktop/login.png"]];
+//        imageV.image = [[NSImage alloc] initWithData:[NSData dataWithContentsOfFile:@"/Users/zouran/Desktop/login.png"]];
+        // 从路径加载过来的
+        if ([modal.content containsString:@"zouran"]) {
+            self.imageV.image = [[NSImage alloc] initWithContentsOfFile:modal.content];
+        }
+        [self.bubbleImageView addSubview:self.imageV];
+        [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.bubbleImageView).with.offset(10);
+            make.top.equalTo(self.bubbleImageView).with.offset(10);
             make.width.mas_equalTo(modal.contentWidth);
             make.height.mas_equalTo(modal.contentHeight);
         }];

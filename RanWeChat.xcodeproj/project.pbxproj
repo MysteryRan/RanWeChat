@@ -29,6 +29,7 @@
 		1AD2F0AC24B71A1600618CFB /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD2F0A324B717D900618CFB /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AD2F0B024B71CEA00618CFB /* RanVideoChatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F0AF24B71CEA00618CFB /* RanVideoChatWindow.m */; };
 		1AD2F0B324B71E2B00618CFB /* RanVideChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F0B224B71E2B00618CFB /* RanVideChatController.m */; };
+		1ADCF9A124BD847100C15503 /* RanDragTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADCF9A024BD847100C15503 /* RanDragTableView.m */; };
 		E9E50697CC01AF2DF00E69F0 /* Pods_RanWeChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6452AEB1AB14D207741BDF2 /* Pods_RanWeChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +65,6 @@
 		1AD2F07924B6F1F900618CFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1AD2F07B24B6F1F900618CFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AD2F07C24B6F1F900618CFB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1AD2F07E24B6F1F900618CFB /* RanWeChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RanWeChat.entitlements; sourceTree = "<group>"; };
 		1AD2F08424B6F2DA00618CFB /* RanLoginWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanLoginWindowController.h; sourceTree = "<group>"; };
 		1AD2F08524B6F2DA00618CFB /* RanLoginWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanLoginWindowController.m; sourceTree = "<group>"; };
 		1AD2F08724B6F2F500618CFB /* RanLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanLoginViewController.h; sourceTree = "<group>"; };
@@ -86,6 +86,8 @@
 		1AD2F0AF24B71CEA00618CFB /* RanVideoChatWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanVideoChatWindow.m; sourceTree = "<group>"; };
 		1AD2F0B124B71E2B00618CFB /* RanVideChatController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanVideChatController.h; sourceTree = "<group>"; };
 		1AD2F0B224B71E2B00618CFB /* RanVideChatController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanVideChatController.m; sourceTree = "<group>"; };
+		1ADCF99F24BD847100C15503 /* RanDragTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RanDragTableView.h; sourceTree = "<group>"; };
+		1ADCF9A024BD847100C15503 /* RanDragTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RanDragTableView.m; sourceTree = "<group>"; };
 		361D00B3AFA230285718C1A2 /* Pods-RanWeChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RanWeChat.release.xcconfig"; path = "Target Support Files/Pods-RanWeChat/Pods-RanWeChat.release.xcconfig"; sourceTree = "<group>"; };
 		CADD1509381BB7726B75D1B8 /* Pods-RanWeChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RanWeChat.debug.xcconfig"; path = "Target Support Files/Pods-RanWeChat/Pods-RanWeChat.debug.xcconfig"; sourceTree = "<group>"; };
 		E6452AEB1AB14D207741BDF2 /* Pods_RanWeChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RanWeChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,7 +163,6 @@
 				1AD2F07824B6F1F900618CFB /* Main.storyboard */,
 				1AD2F07B24B6F1F900618CFB /* Info.plist */,
 				1AD2F07C24B6F1F900618CFB /* main.m */,
-				1AD2F07E24B6F1F900618CFB /* RanWeChat.entitlements */,
 			);
 			path = RanWeChat;
 			sourceTree = "<group>";
@@ -204,6 +205,8 @@
 				1A6ACD6924BC4C7E00587CC0 /* RanLastTalkHeaderCell.m */,
 				1A6ACD6B24BC5D4D00587CC0 /* RanTextView.h */,
 				1A6ACD6C24BC5D4D00587CC0 /* RanTextView.m */,
+				1ADCF99F24BD847100C15503 /* RanDragTableView.h */,
+				1ADCF9A024BD847100C15503 /* RanDragTableView.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AD2F08924B6F2F500618CFB /* RanLoginViewController.m in Sources */,
+				1ADCF9A124BD847100C15503 /* RanDragTableView.m in Sources */,
 				1A6ACD6A24BC4C7E00587CC0 /* RanLastTalkHeaderCell.m in Sources */,
 				1A6C5F9E24B810B8007F190F /* RanLastMessageModal.m in Sources */,
 				1A6C5FA924B85AEB007F190F /* RanChatDetialCell.m in Sources */,

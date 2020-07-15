@@ -35,7 +35,6 @@
             height = height / (width / 280);
             width = 280;
         }
-        NSLog(@"%f====%f",width,height);
     }
     message.contentHeight = height + 20;
     message.contentWidth = width;
