@@ -10,9 +10,9 @@
 ![发送文本消息与重发](https://github.com/MysteryRan/RanWeChat/blob/master/send-resend.gif "发送消息")
 
  ### 3.音视频通话。
-   
     这里感谢Jhuster,https://github.com/Jhuster/RTCStartupDemo 提供的WebRTC本地信令服务器。
 ![音视频通话](https://github.com/MysteryRan/RanWeChat/blob/master/video-chat.png "音视频通话")
+![音视频通话](https://github.com/MysteryRan/RanWeChat/blob/master/videocall.gif "音视频通话")
 ## 将要完成的功能:
  ### 1.图片聊天详情的布局。
  ### 2.发送文字与图片功能。
