@@ -56,6 +56,8 @@
 
 @property(nonatomic, strong)RTCVideoCapturer *cap;
 
+@property(nonatomic, strong)AVCaptureSession *screenCaptureSession;
+
 
 @end
 
@@ -71,12 +73,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 竖屏聊天
     [self localImage];
     
+    // 横屏聊天
 //    [self otherlocalImage];
+    
+    // 屏幕共享
+//    [self screenShare];
     [self createConnection];
     
-    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.137.73:9000/socket.io"];
+    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.137.227:9000/socket.io"];
     self.manager = [[SocketManager alloc] initWithSocketURL:url config:@{@"log": @NO, @"compress": @NO}];
     self.socket = self.manager.defaultSocket;
 
@@ -509,6 +516,7 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
 }
 
 - (IBAction)endCallClick:(NSButton *)sender {
+    [self.screenCaptureSession stopRunning];
     [self.captureSession stopRunning];
     [self.capture stopCapture];
     self.factory = nil;
@@ -521,6 +529,7 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
 }
 
 - (void)closeApplication {
+    [self.screenCaptureSession stopRunning];
     [self.captureSession stopRunning];
     self.alert.informativeText = @"关闭窗口将关闭视频聊天";
     [self.capture stopCapture];
@@ -537,7 +546,7 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
 }
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
-    
+    NSLog(@"--->");
     if (connection == self.connectionVideo) {
                 // Handle video sample buffer
             if (CMSampleBufferGetNumSamples(sampleBuffer) != 1 || !CMSampleBufferIsValid(sampleBuffer) ||
@@ -559,13 +568,35 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
             
             
             // connect the video frames to the WebRTC
-            [self.source capturer:self.capture didCaptureVideoFrame:videoFrame];
+            [self.source capturer:self.cap didCaptureVideoFrame:videoFrame];
             
             RTCVideoTrack *videoTrack = [self.factory videoTrackWithSource:self.source trackId:@"RTCvS0"];
             [self.localStream addVideoTrack:videoTrack];
-        NSLog(@"%@",self.localStream);
-                
+    } else {
+        if (CMSampleBufferGetNumSamples(sampleBuffer) != 1 || !CMSampleBufferIsValid(sampleBuffer) ||
+            !CMSampleBufferDataIsReady(sampleBuffer)) {
+          return;
         }
+
+        CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+        if (pixelBuffer == nil) {
+          return;
+        }
+
+        RTCCVPixelBuffer *rtcPixelBuffer = [[RTCCVPixelBuffer alloc] initWithPixelBuffer:pixelBuffer];
+        int64_t timeStampNs =
+            CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sampleBuffer)) * NSEC_PER_SEC;
+        RTCVideoFrame *videoFrame = [[RTCVideoFrame alloc] initWithBuffer:rtcPixelBuffer
+                                                                 rotation:RTCVideoRotation_0
+                                                              timeStampNs:timeStampNs];
+        
+        
+        // connect the video frames to the WebRTC
+        [self.source capturer:self.cap didCaptureVideoFrame:videoFrame];
+        
+        RTCVideoTrack *videoTrack = [self.factory videoTrackWithSource:self.source trackId:@"RTCvS0"];
+        [self.localStream addVideoTrack:videoTrack];
+    }
     
 }
 
@@ -590,6 +621,71 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
 //        [_alert layout];
     }
     return _alert;
+}
+
+// 屏幕共享
+- (void)screenShare {
+    self.screenCaptureSession = [[AVCaptureSession alloc] init];
+    
+    AVCaptureVideoDataOutput* captureOutput = [[AVCaptureVideoDataOutput alloc] init];
+    
+    NSString* key = (NSString*)kCVPixelBufferPixelFormatTypeKey;
+    NSNumber* val = [NSNumber numberWithUnsignedInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange];
+    NSDictionary* videoSettings = [NSDictionary dictionaryWithObject:val forKey:key];
+    
+    captureOutput.videoSettings = videoSettings;
+    
+    if ([self.screenCaptureSession canAddOutput:captureOutput]) {
+        [self.screenCaptureSession addOutput:captureOutput];
+    }
+    
+    [captureOutput setSampleBufferDelegate:self
+                                     queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    
+    NSArray* currentInputs = [self.screenCaptureSession inputs];
+    // remove current input
+    if ([currentInputs count] > 0) {
+        AVCaptureInput* currentInput = (AVCaptureInput*)[currentInputs objectAtIndex:0];
+        [self.screenCaptureSession removeInput:currentInput];
+    }
+    
+    // now create capture session input out of AVCaptureDevice
+    uint32_t count = 0;
+    CGDirectDisplayID displayIDs[3] = {0};
+    CGGetOnlineDisplayList(3, displayIDs, &count);
+    AVCaptureScreenInput* newCaptureInput = [[AVCaptureScreenInput alloc] initWithDisplayID:displayIDs[0]];
+    
+    newCaptureInput.minFrameDuration = CMTimeMake(1, 120);
+    
+    // ---  设置分辨率  ---
+    self.screenCaptureSession.sessionPreset = AVCaptureSessionPreset320x240;
+        
+    // try to add our new capture device to the capture session
+    [self.screenCaptureSession beginConfiguration];
+    
+    BOOL addedCaptureInput = NO;
+    if ([self.screenCaptureSession canAddInput:newCaptureInput]) {
+        [self.screenCaptureSession addInput:newCaptureInput];
+        addedCaptureInput = YES;
+    } else {
+        addedCaptureInput = NO;
+    }
+    
+    [self.screenCaptureSession commitConfiguration];
+    [self.screenCaptureSession startRunning];
+    
+    if (!self.factory) {
+        NSArray<RTCVideoCodecInfo *> *ddd = [RTCDefaultVideoEncoderFactory supportedCodecs];
+        RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
+        RTCVideoCodecInfo *info = ddd[2];
+        [videoEncoderFactory setPreferredCodec:info];
+        RTCDefaultVideoDecoderFactory *videoDecoderFactory = [[RTCDefaultVideoDecoderFactory alloc]init];
+        self.factory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:videoEncoderFactory decoderFactory:videoDecoderFactory];
+        self.source = [self.factory videoSource];
+        self.cap = [[RTCVideoCapturer alloc] initWithDelegate:self.source];
+    }
+
+    self.localStream = [self.factory mediaStreamWithStreamId:@"RTCmS"];
 }
 
 
