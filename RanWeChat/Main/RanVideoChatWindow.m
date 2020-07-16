@@ -22,14 +22,5 @@
     
 }
 
-- (void)close {
-    RanVideChatController *controller = (RanVideChatController *)self.contentViewController;
-    [controller.capture stopCapture];
-}
-
-- (void)windowWillClose:(NSNotification *)notification {
-    
-}
-
 
 @end

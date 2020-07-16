@@ -102,8 +102,11 @@
     self.ranLastTalkTableView.menu = ranMenu;
 }
 
+
+
 - (void)deleteRow:(id)sender {
-    [self.lasttalkArray removeObjectAtIndex:self.ranLastTalkTableView.selectedRow];
+    NSInteger rightClicked = [self.ranLastTalkTableView clickedRow];
+    [self.lasttalkArray removeObjectAtIndex:rightClicked];
     [self.ranLastTalkTableView reloadData];
 }
 

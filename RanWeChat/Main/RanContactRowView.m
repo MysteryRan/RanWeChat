@@ -98,6 +98,10 @@ static NSGradient *gradientWithTargetColor(NSColor *targetColor) {
     }
 }
 
+- (void)drawContextMenuHighlightForRow:(NSInteger)row {
+
+}
+
 @end
 
 void DrawSeparatorInRect(NSRect rect) {

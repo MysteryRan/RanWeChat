@@ -20,7 +20,7 @@
     [super drawRect:dirtyRect];
     [self registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
     
-//    NSLog(@"%@",NSStringFromRect(self.frame));
+    NSLog(@"%@",NSStringFromRect(self.frame));
     
     // Drawing code here.
     if (self.isDragIn) {
@@ -75,6 +75,9 @@
     }
 }
 
+- (void)drawContextMenuHighlightForRow:(NSInteger)row {
+
+}
 
 
 

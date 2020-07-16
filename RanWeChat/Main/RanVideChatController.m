@@ -52,17 +52,29 @@
 @property (nonatomic, strong)RTCVideoSource *source;
 
 
+@property (nonatomic,strong) NSAlert *alert;
+
+
 @end
 
 @implementation RanVideChatController
+
+- (void)viewDidLayout {
+    [super viewDidLayout];
+    NSButton *closeButton = [self.view.window standardWindowButton:NSWindowCloseButton];
+    [closeButton setTarget:self];
+    [closeButton setAction:@selector(closeApplication)];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 //    [self localImage];
-//    [self createConnection];
     
-    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.20.113:9000/socket.io"];
+    [self otherlocalImage];
+    [self createConnection];
+    
+    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.20.103:9000/socket.io"];
     self.manager = [[SocketManager alloc] initWithSocketURL:url config:@{@"log": @NO, @"compress": @NO}];
     self.socket = self.manager.defaultSocket;
 
@@ -187,15 +199,15 @@
      NSArray<AVCaptureDevice*>* devices = [RTCCameraVideoCapturer captureDevices];
         if (devices.count > 0) {
 //            AVCaptureDevice* device = devices[0];
-            [RTCPeerConnectionFactory initialize];
+//            [RTCPeerConnectionFactory initialize];
             if (!self.factory) {
                 RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
                 RTCDefaultVideoDecoderFactory *videoDecoderFactory = [[RTCDefaultVideoDecoderFactory alloc]init];
                 self.factory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:videoEncoderFactory decoderFactory:videoDecoderFactory];
             }
             self.localStream = [self.factory mediaStreamWithStreamId:@"RTCmS"];
-            RTCVideoSource *videosorce = [self.factory videoSource];
-            self.capture = [[RTCCameraVideoCapturer alloc] initWithDelegate:videosorce];
+//            RTCVideoSource *videosorce = [self.factory videoSource];
+//            self.capture = [[RTCCameraVideoCapturer alloc] initWithDelegate:videosorce];
             NSError *deviceError;
             AVCaptureDevice *cameraDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
             
@@ -213,17 +225,17 @@
                 outputVideoDevice.videoSettings = videoSettings;
                 
                 
-                AVCaptureAudioDataOutput *outputAudioDevice = [[AVCaptureAudioDataOutput alloc] init];
-                
-                NSDictionary *audioSettings = @{AVFormatIDKey : @(kAudioFormatMPEG4AAC), AVSampleRateKey : @44100, AVEncoderBitRateKey : @64000, AVNumberOfChannelsKey : @1};
-                outputAudioDevice.audioSettings = audioSettings;
+//                AVCaptureAudioDataOutput *outputAudioDevice = [[AVCaptureAudioDataOutput alloc] init];
+//
+//                NSDictionary *audioSettings = @{AVFormatIDKey : @(kAudioFormatMPEG4AAC), AVSampleRateKey : @44100, AVEncoderBitRateKey : @64000, AVNumberOfChannelsKey : @1};
+//                outputAudioDevice.audioSettings = audioSettings;
                 // initialize capture session
                 
             self.captureSession = [[AVCaptureSession alloc] init];
             
             [self.captureSession addInput:inputCameraDevice];
             [self.captureSession addOutput:outputVideoDevice];
-            [self.captureSession addOutput:outputAudioDevice];
+//            [self.captureSession addOutput:outputAudioDevice];
                 
                 // begin configuration for the AVCaptureSession
             [self.captureSession beginConfiguration];
@@ -244,6 +256,39 @@
             self.previewLayer.frame = self.view.bounds;
             [self.view.layer addSublayer:self.previewLayer];
             [self.captureSession startRunning];
+            
+        }
+}
+
+- (void)otherlocalImage {
+    NSArray<AVCaptureDevice*>* devices = [RTCCameraVideoCapturer captureDevices];
+        if (devices.count > 0) {
+            AVCaptureDevice* device = devices[0];
+            [RTCPeerConnectionFactory initialize];
+            if (!self.factory) {
+                 NSArray<RTCVideoCodecInfo *> *ddd = [RTCDefaultVideoEncoderFactory supportedCodecs];
+                            RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
+                RTCVideoCodecInfo *info = ddd[2];
+                [videoEncoderFactory setPreferredCodec:info];
+                RTCDefaultVideoDecoderFactory *videoDecoderFactory = [[RTCDefaultVideoDecoderFactory alloc]init];
+                self.factory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:videoEncoderFactory decoderFactory:videoDecoderFactory];
+            }
+            self.localStream = [self.factory mediaStreamWithStreamId:@"RTCmS"];
+            RTCVideoSource *videosorce = [self.factory videoSource];
+            self.capture = [[RTCCameraVideoCapturer alloc] initWithDelegate:videosorce];
+            AVCaptureDeviceFormat *format = [self selectFormatForDevice:device];
+            NSInteger fps = [self selectFpsForFormat:format];
+            RTCMTLNSVideoView *localView = [[RTCMTLNSVideoView alloc] initWithFrame:CGRectMake(0, 120, 200, 200)];
+            localView.wantsLayer = YES;
+            localView.layer.backgroundColor = [NSColor lightGrayColor].CGColor;
+            localView.layer.borderWidth = 2;
+            localView.layer.borderColor = [NSColor redColor].CGColor;
+            [self.view addSubview:localView];
+            [self.capture startCaptureWithDevice:device format:format fps:fps completionHandler:^(NSError * _Nonnull error) {
+                self.front_videotrack = [self.factory videoTrackWithSource:videosorce trackId:@"RTCvS0"];
+                [self.localStream addVideoTrack:self.front_videotrack];
+                [self.front_videotrack addRenderer:localView];
+            }];
             
         }
 }
@@ -465,16 +510,38 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
                    
 
                }];
+           } else {
+               NSLog(@"--->error %@",sdpError);
            }
     }];
 }
 
 - (IBAction)endCallClick:(NSButton *)sender {
     [self.captureSession stopRunning];
+    [self.capture stopCapture];
+    self.factory = nil;
+    self.pc = nil;
     [self.socket disconnect];
+    RTCStopInternalCapture();
+    RTCShutdownInternalTracer();
     [self.view.window orderOut:nil];
     [self.view.window close];
-    
+}
+
+- (void)closeApplication {
+    [self.captureSession stopRunning];
+    self.alert.informativeText = @"关闭窗口将关闭视频聊天";
+    [self.capture stopCapture];
+    RTCStopInternalCapture();
+    RTCShutdownInternalTracer();
+    self.factory = nil;
+    self.pc = nil;
+    [self.alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+        [self.captureSession stopRunning];
+        [self.socket disconnect];
+        [self.view.window orderOut:nil];
+        [self.view.window close];
+    }];
 }
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
@@ -503,14 +570,33 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
             
             RTCVideoTrack *videoTrack = [self.factory videoTrackWithSource:self.source trackId:@"RTCvS0"];
             [self.localStream addVideoTrack:videoTrack];
+            
                 
         }
     
 }
 
-
-- (void)windowWillClose:(NSNotification *)notification {
-    
+-(NSAlert *)alert {
+    if (!_alert) {
+        _alert = [[NSAlert alloc]init];
+        _alert.messageText = @"温馨提示";
+        _alert.informativeText = @"这是一个警告⚠️";
+//        _alert.icon = [NSImage imageNamed:@"1"];
+        [_alert addButtonWithTitle:@"确定"];
+//        _alert.showsHelp = YES;
+        _alert.delegate = self;
+        _alert.alertStyle = NSAlertStyleWarning;
+        _alert.helpAnchor = @"哈哈哈";
+//        _alert.suppressionButton.target = self;
+//        _alert.suppressionButton.action = @selector(handleSuppressionButton:);
+//        [_alert.suppressionButton setTitle:@"2341224"];
+//        _alert.showsSuppressionButton = YES;
+        NSImageView *imageView = [[NSImageView alloc]initWithFrame:NSMakeRect(0, 0, 200, 50)];
+//        imageView.image = [NSImage imageNamed:@"2"];
+        _alert.accessoryView = imageView;
+//        [_alert layout];
+    }
+    return _alert;
 }
 
 
