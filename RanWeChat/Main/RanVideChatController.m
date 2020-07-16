@@ -54,6 +54,8 @@
 
 @property (nonatomic,strong) NSAlert *alert;
 
+@property(nonatomic, strong)RTCVideoCapturer *cap;
+
 
 @end
 
@@ -69,12 +71,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self localImage];
+    [self localImage];
     
-    [self otherlocalImage];
+//    [self otherlocalImage];
     [self createConnection];
     
-    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.20.103:9000/socket.io"];
+    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.137.73:9000/socket.io"];
     self.manager = [[SocketManager alloc] initWithSocketURL:url config:@{@"log": @NO, @"compress": @NO}];
     self.socket = self.manager.defaultSocket;
 
@@ -199,64 +201,54 @@
      NSArray<AVCaptureDevice*>* devices = [RTCCameraVideoCapturer captureDevices];
         if (devices.count > 0) {
 //            AVCaptureDevice* device = devices[0];
-//            [RTCPeerConnectionFactory initialize];
+            [RTCPeerConnectionFactory initialize];
             if (!self.factory) {
-                RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
+                NSArray<RTCVideoCodecInfo *> *ddd = [RTCDefaultVideoEncoderFactory supportedCodecs];
+                            RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
+                RTCVideoCodecInfo *info = ddd[2];
+                [videoEncoderFactory setPreferredCodec:info];
                 RTCDefaultVideoDecoderFactory *videoDecoderFactory = [[RTCDefaultVideoDecoderFactory alloc]init];
                 self.factory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:videoEncoderFactory decoderFactory:videoDecoderFactory];
             }
             self.localStream = [self.factory mediaStreamWithStreamId:@"RTCmS"];
-//            RTCVideoSource *videosorce = [self.factory videoSource];
-//            self.capture = [[RTCCameraVideoCapturer alloc] initWithDelegate:videosorce];
+            self.source = [self.factory videoSource];
+            self.cap = [[RTCVideoCapturer alloc] initWithDelegate:self.source];
             NSError *deviceError;
             AVCaptureDevice *cameraDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
             
             AVCaptureDeviceInput *inputCameraDevice = [AVCaptureDeviceInput deviceInputWithDevice:cameraDevice error:&deviceError];
-                
                 // make output device
                 
             AVCaptureVideoDataOutput *outputVideoDevice = [[AVCaptureVideoDataOutput alloc] init];
-
-                
-                NSString* key = (NSString*)kCVPixelBufferPixelFormatTypeKey;
-                NSNumber* val = [NSNumber numberWithUnsignedInt:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange];
-                NSDictionary* videoSettings = [NSDictionary dictionaryWithObject:val forKey:key];
-                
-                outputVideoDevice.videoSettings = videoSettings;
-                
-                
-//                AVCaptureAudioDataOutput *outputAudioDevice = [[AVCaptureAudioDataOutput alloc] init];
-//
-//                NSDictionary *audioSettings = @{AVFormatIDKey : @(kAudioFormatMPEG4AAC), AVSampleRateKey : @44100, AVEncoderBitRateKey : @64000, AVNumberOfChannelsKey : @1};
-//                outputAudioDevice.audioSettings = audioSettings;
+            NSString* key = (NSString*)kCVPixelBufferPixelFormatTypeKey;
+            NSNumber* val = [NSNumber numberWithUnsignedInt:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange];
+            NSDictionary* videoSettings = [NSDictionary dictionaryWithObject:val forKey:key];
+            outputVideoDevice.videoSettings = videoSettings;
+            [outputVideoDevice setSampleBufferDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)];
+            AVCaptureAudioDataOutput *outputAudioDevice = [[AVCaptureAudioDataOutput alloc] init];
+            NSDictionary *audioSettings = @{AVFormatIDKey : @(kAudioFormatMPEG4AAC), AVSampleRateKey : @44100, AVEncoderBitRateKey : @64000, AVNumberOfChannelsKey : @1};
+            outputAudioDevice.audioSettings = audioSettings;
                 // initialize capture session
-                
+
             self.captureSession = [[AVCaptureSession alloc] init];
-            
             [self.captureSession addInput:inputCameraDevice];
             [self.captureSession addOutput:outputVideoDevice];
-//            [self.captureSession addOutput:outputAudioDevice];
+            [self.captureSession addOutput:outputAudioDevice];
                 
                 // begin configuration for the AVCaptureSession
             [self.captureSession beginConfiguration];
-                
                 // picture resolution
             [self.captureSession setSessionPreset:[NSString stringWithString:AVCaptureSessionPreset1280x720]];
-                
             self.connectionVideo = [outputVideoDevice connectionWithMediaType:AVMediaTypeVideo];
             self.connectionVideo.videoMirrored = NO;
-                
             [self.captureSession commitConfiguration];
-                
-                // make preview layer and add so that camera's view is displayed on screen
-                
+            // make preview layer and add so that camera's view is displayed on screen
             self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
             [self.previewLayer setVideoGravity:AVLayerVideoGravityResize];
             [self.view setWantsLayer:YES];
             self.previewLayer.frame = self.view.bounds;
             [self.view.layer addSublayer:self.previewLayer];
             [self.captureSession startRunning];
-            
         }
 }
 
@@ -545,6 +537,7 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
 }
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    
     if (connection == self.connectionVideo) {
                 // Handle video sample buffer
             if (CMSampleBufferGetNumSamples(sampleBuffer) != 1 || !CMSampleBufferIsValid(sampleBuffer) ||
@@ -570,7 +563,7 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
             
             RTCVideoTrack *videoTrack = [self.factory videoTrackWithSource:self.source trackId:@"RTCvS0"];
             [self.localStream addVideoTrack:videoTrack];
-            
+        NSLog(@"%@",self.localStream);
                 
         }
     
