@@ -9,15 +9,15 @@
       "idiom" : "universal",
       "resizing" : {
         "cap-insets" : {
-          "bottom" : 14,
-          "left" : 278,
-          "right" : 21,
-          "top" : 57
+          "bottom" : 52,
+          "left" : 227,
+          "right" : 230,
+          "top" : 5
         },
         "center" : {
-          "height" : 1,
+          "height" : 8,
           "mode" : "tile",
-          "width" : 141
+          "width" : 1
         },
         "mode" : "9-part"
       },

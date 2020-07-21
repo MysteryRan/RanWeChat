@@ -43,11 +43,12 @@
     self.leftMainBar.wantsLayer = YES;
     self.leftMainBar.layer.backgroundColor = [NSColor colorWithSRGBRed:31 / 255.0 green:140 / 255.0 blue:235 / 255.0 alpha:1].CGColor;
     
-    self.ranLastTalkTableView.allowsMultipleSelection = YES;
+//    self.ranLastTalkTableView.allowsMultipleSelection = YES;
     
     RanLastTalkHeaderCell *headerCell = [[RanLastTalkHeaderCell alloc] init];
     headerCell.stringValue = @"";
     self.ranLastTalkTableView.tableColumns[0].headerCell = headerCell;
+    self.ranLastTalkTableView.rowHeight = 80;
     
     NSTableHeaderView *header = self.ranLastTalkTableView.headerView;
     NSView *searchView = [[NSView alloc] init];
@@ -83,6 +84,7 @@
     
     // 拖拽代理
     self.detialChatTableView.dragDelegate = self;
+    self.detialChatTableView.usesAutomaticRowHeights = YES;
     [self.detialChatTableView reloadData];
     [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
     
@@ -100,6 +102,13 @@
     [ranMenu addItem:[NSMenuItem separatorItem]];
     [ranMenu addItem:item3];
     self.ranLastTalkTableView.menu = ranMenu;
+    
+    self.detialChatTableView.allowsMultipleSelection = YES;
+    [self.detialChatTableView setColumnAutoresizingStyle:NSTableViewUniformColumnAutoresizingStyle];
+        //最后一行自动宽等比增减
+    //    [self.treeView sizeLastColumnToFit];
+        //app第一次运行Column 自动宽等比增减，否则会有滚动条
+        [self.detialChatTableView sizeToFit];
 }
 
 
@@ -193,43 +202,16 @@
     } else {
         return NO;
     }
-    
+
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
-    
-    
+
+
 }
 
 - (void)drawContextMenuHighlightForRow:(NSInteger)row {
-    
-}
 
-#pragma mark - 行高
--(CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row{
-    if (tableView == self.ranLastTalkTableView) {
-        return 80;
-    } else {
-        RanLastMessageModal *modal = self.detialArray[row];
-        return modal.contentHeight + 50;
-    }
-}
-
-- (void)cooking {
-    
-    
-}
-
-- (void)action1 {
-    
-}
-
-- (void)action2 {
-    
-}
-
-- (void)selected {
-    
 }
 
 // 弹出聊天窗口

@@ -66,5 +66,21 @@
 		<key>content</key>
 		<string>最近的消息</string>
 	</dict>
+    <dict>
+        <key>messagetype</key>
+        <integer>1</integer>
+        <key>mediatype</key>
+        <integer>1</integer>
+        <key>name</key>
+        <string>最近联系人小徐</string>
+        <key>time</key>
+        <string>2:03:39</string>
+        <key>content</key>
+        <string>video-chat</string>
+        <key>imageWidth</key>
+        <string>614</string>
+        <key>imageHeight</key>
+        <string>1088</string>
+    </dict>
 </array>
 </plist>

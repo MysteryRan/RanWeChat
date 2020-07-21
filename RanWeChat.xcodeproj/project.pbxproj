@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A1642A924C1937F0045FAFA /* RanChatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1642A824C1937F0045FAFA /* RanChatImageView.m */; };
+		1A1642AC24C195A60045FAFA /* RanChatRightImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1642AB24C195A60045FAFA /* RanChatRightImageView.m */; };
 		1A6ACD6A24BC4C7E00587CC0 /* RanLastTalkHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6ACD6924BC4C7E00587CC0 /* RanLastTalkHeaderCell.m */; };
 		1A6ACD6D24BC5D4D00587CC0 /* RanTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6ACD6C24BC5D4D00587CC0 /* RanTextView.m */; };
 		1A6C5F9B24B80AE0007F190F /* lasttalklist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9A24B80AE0007F190F /* lasttalklist.plist */; };
@@ -48,6 +50,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A1642A724C1937F0045FAFA /* RanChatImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanChatImageView.h; sourceTree = "<group>"; };
+		1A1642A824C1937F0045FAFA /* RanChatImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanChatImageView.m; sourceTree = "<group>"; };
+		1A1642AA24C195A60045FAFA /* RanChatRightImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanChatRightImageView.h; sourceTree = "<group>"; };
+		1A1642AB24C195A60045FAFA /* RanChatRightImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanChatRightImageView.m; sourceTree = "<group>"; };
 		1A6ACD6824BC4C7E00587CC0 /* RanLastTalkHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanLastTalkHeaderCell.h; sourceTree = "<group>"; };
 		1A6ACD6924BC4C7E00587CC0 /* RanLastTalkHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanLastTalkHeaderCell.m; sourceTree = "<group>"; };
 		1A6ACD6B24BC5D4D00587CC0 /* RanTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanTextView.h; sourceTree = "<group>"; };
@@ -207,6 +213,10 @@
 				1A6ACD6C24BC5D4D00587CC0 /* RanTextView.m */,
 				1ADCF99F24BD847100C15503 /* RanDragTableView.h */,
 				1ADCF9A024BD847100C15503 /* RanDragTableView.m */,
+				1A1642A724C1937F0045FAFA /* RanChatImageView.h */,
+				1A1642A824C1937F0045FAFA /* RanChatImageView.m */,
+				1A1642AA24C195A60045FAFA /* RanChatRightImageView.h */,
+				1A1642AB24C195A60045FAFA /* RanChatRightImageView.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -327,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A1642A924C1937F0045FAFA /* RanChatImageView.m in Sources */,
 				1AD2F08924B6F2F500618CFB /* RanLoginViewController.m in Sources */,
 				1ADCF9A124BD847100C15503 /* RanDragTableView.m in Sources */,
 				1A6ACD6A24BC4C7E00587CC0 /* RanLastTalkHeaderCell.m in Sources */,
@@ -341,6 +352,7 @@
 				1AD2F0B024B71CEA00618CFB /* RanVideoChatWindow.m in Sources */,
 				1AD2F08624B6F2DA00618CFB /* RanLoginWindowController.m in Sources */,
 				1AD2F09C24B70A3800618CFB /* RanContactRowView.m in Sources */,
+				1A1642AC24C195A60045FAFA /* RanChatRightImageView.m in Sources */,
 				1AD2F09124B6FB9700618CFB /* RanMainViewController.m in Sources */,
 				1AD2F09F24B70E0700618CFB /* RanHeaderCell.m in Sources */,
 				1AD2F0A224B711A400618CFB /* RanLastTalkTableView.m in Sources */,

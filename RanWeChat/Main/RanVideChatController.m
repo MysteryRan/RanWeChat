@@ -83,7 +83,7 @@
 //    [self screenShare];
     [self createConnection];
     
-    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.137.227:9000/socket.io"];
+    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.137.65:9000/socket.io"];
     self.manager = [[SocketManager alloc] initWithSocketURL:url config:@{@"log": @NO, @"compress": @NO}];
     self.socket = self.manager.defaultSocket;
 
@@ -546,7 +546,6 @@ didStartReceivingOnTransceiver:(RTCRtpTransceiver *)transceiver {
 }
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
-    NSLog(@"--->");
     if (connection == self.connectionVideo) {
                 // Handle video sample buffer
             if (CMSampleBufferGetNumSamples(sampleBuffer) != 1 || !CMSampleBufferIsValid(sampleBuffer) ||

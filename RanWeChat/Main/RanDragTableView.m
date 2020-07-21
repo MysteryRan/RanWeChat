@@ -18,10 +18,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    [self registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
-    
-    NSLog(@"%@",NSStringFromRect(self.frame));
-    
+    [self registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];    
     // Drawing code here.
     if (self.isDragIn) {
         if ([self.dragDelegate respondsToSelector:@selector(dragMoveIn)]) {
