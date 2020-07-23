@@ -7,10 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "RanLastMessageModal.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RanChatImageView : NSImageView
+
+@property(nonatomic, assign)MessageType messageType;
 
 @property(nonatomic, strong)NSImage *contentImage;
 

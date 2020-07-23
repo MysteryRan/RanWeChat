@@ -14,7 +14,7 @@
     [super drawRect:dirtyRect];
     
     NSBezierPath *bezier = [NSBezierPath bezierPath];
-    bezier = [self makeBubble:bezier withBubbleRect:NSMakeRect(0, 0, self.bounds.size.width, self.bounds.size.height) corner:4 atPostion:3];
+    bezier = [self makeBubble:bezier withBubbleRect:NSMakeRect(0, 0, self.bounds.size.width - 10, self.bounds.size.height) corner:4 atPostion:3];
 
     [[NSColor whiteColor]set];
     [bezier stroke];
@@ -139,34 +139,6 @@
     CGFloat autoOffDownHeight = 0;
     
     switch (pos) {
-        case 2: //左下
-        {
-            if ((angle == 10) || (angle == 40)) {
-                ABNodepoint = NSMakePoint(leftBottom.x - cornetOffWidth, leftBottom.y);
-            }
-            else
-            {
-                if (rh <= 30)
-                {
-                    autoOffDownHeight = (rh- 2*radius - 10) / 2;
-                    autoOffUpHeight = autoOffDownHeight;
-                    Apoint = NSMakePoint(leftTopY.x,leftTopY.y - autoOffUpHeight);
-                    Bpoint = NSMakePoint(leftBottomY.x,leftBottomY.y + autoOffDownHeight);
-                }
-                else
-                {
-                    autoOffDownHeight = (rh- 2*radius) / 30;//30 :1 的比例进行(按1：29比例平分高度)
-                    autoOffDownHeight = autoOffDownHeight > 10 ? 10 : autoOffDownHeight;
-                    autoOffUpHeight = (rh- 2*radius) - autoOffDownHeight;
-                    
-                    Apoint = NSMakePoint(leftTopY.x,leftTopY.y - autoOffUpHeight + 10);
-                    Bpoint = NSMakePoint(leftBottomY.x,leftBottomY.y + autoOffDownHeight);
-                }
-                
-                ABNodepoint = NSMakePoint(leftBottom.x - cornetOffWidth, (Apoint.y + Bpoint.y) / 2);
-            }
-        }
-            break;
         case 3: //右上
         {
             if ((angle == 10) || (angle == 40)) {
@@ -192,65 +164,6 @@
                 }
                 
                 ABNodepoint = NSMakePoint(rightTopY.x + cornetOffWidth, (Apoint.y + Bpoint.y) / 2);
-            }
-        }
-            break;
-        case 4: //右下
-        {
-            if ((angle == 10) || (angle == 40)) {
-                ABNodepoint = NSMakePoint(rightBottom.x + cornetOffWidth, rightBottom.y);
-            }
-            else //在直线上绘角
-            {
-                if (rh <= 30)
-                {
-                    autoOffDownHeight = (rh- 2*radius - 10) / 2;
-                    autoOffUpHeight = autoOffDownHeight;
-                    Apoint = NSMakePoint(rightTopY.x,rightTopY.y - autoOffUpHeight);
-                    Bpoint = NSMakePoint(rightBottomY.x,rightBottomY.y + autoOffDownHeight);
-                }
-                else
-                {
-                    autoOffDownHeight = (rh- 2*radius) / 30;//30 :1 的比例进行(按1：29比例平分高度)
-                    autoOffDownHeight = autoOffDownHeight > 10 ? 10 : autoOffDownHeight;
-                    autoOffUpHeight = (rh- 2*radius) - autoOffDownHeight;
-                    
-                    Apoint = NSMakePoint(rightTopY.x,rightTopY.y - autoOffUpHeight + 10);
-                    Bpoint = NSMakePoint(rightBottomY.x,rightBottomY.y + autoOffDownHeight);
-                }
-                
-                ABNodepoint = NSMakePoint(rightBottomY.x + cornetOffWidth, (Apoint.y + Bpoint.y) / 2);
-            }
-
-        }
-            break;
-            
-        default: //左上
-        {
-            if ((angle == 10) || (angle == 40))
-            {
-                ABNodepoint = NSMakePoint(leftTop.x - cornetOffWidth, leftTop.y);
-            }
-            else
-            {
-                if (rh <=30)
-                {
-                    autoOffDownHeight = (rh- 2*radius - 10) / 2;
-                    autoOffUpHeight = autoOffDownHeight;
-                    Apoint = NSMakePoint(leftTopY.x,leftTopY.y - autoOffDownHeight);
-                    Bpoint = NSMakePoint(leftBottomY.x,leftBottomY.y + autoOffUpHeight);
-                }
-                else
-                {
-                    autoOffUpHeight = (rh- 2*radius) / 30;//30 :1 的比例进行(按1：29比例平分高度)
-                    autoOffUpHeight = autoOffUpHeight > 10 ? 10 : autoOffUpHeight;
-                    autoOffDownHeight = (rh- 2*radius) - autoOffUpHeight;
-                    
-                    Apoint = NSMakePoint(leftTopY.x,leftTopY.y - autoOffUpHeight );
-                    Bpoint = NSMakePoint(leftBottomY.x,leftBottomY.y + autoOffDownHeight - 10);
-                }
-                
-                ABNodepoint = NSMakePoint(leftTop.x - cornetOffWidth, (Apoint.y + Bpoint.y) / 2);
             }
         }
             break;

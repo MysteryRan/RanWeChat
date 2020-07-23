@@ -709,7 +709,7 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="nDT-ud-rCx">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="380" y="138" width="700" height="600"/>
+                        <rect key="contentRect" x="370" y="54" width="700" height="800"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <connections>
                             <outlet property="delegate" destination="fyX-ce-VTX" id="ufp-VV-Dql"/>
@@ -728,7 +728,7 @@
             <objects>
                 <viewController id="OGs-Yx-02H" customClass="RanMainViewController" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="OND-lj-cyP">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="800"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="eUz-cN-5Cl">
@@ -1011,6 +1011,9 @@
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                             <font key="font" metaFont="system"/>
                                                                         </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="showEmotionClick:" target="OGs-Yx-02H" id="XLs-h9-zgB"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2b-tA-cF3">
                                                                         <rect key="frame" x="10" y="10" width="430" height="45"/>
@@ -1208,6 +1211,112 @@
                 <customObject id="DWT-H2-tf8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="198" y="1303"/>
+        </scene>
+        <!--Ran Emotion View Controller-->
+        <scene sceneID="KzA-bl-UxO">
+            <objects>
+                <viewController storyboardIdentifier="emotion" id="oze-D9-Fab" customClass="RanEmotionViewController" sceneMemberID="viewController">
+                    <view key="view" id="tyO-QX-Ee0">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nU2-8d-Ch0">
+                                <rect key="frame" x="0.0" y="60" width="450" height="240"/>
+                                <clipView key="contentView" id="ETD-WY-aYO">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="240"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="4eJ-Yy-8BW">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" id="snX-1A-sct">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="oze-D9-Fab" id="Syk-ca-2Ba"/>
+                                                <outlet property="delegate" destination="oze-D9-Fab" id="eIl-Rx-grm"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="iBt-RN-3Wf">
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="dgc-Nf-gqr">
+                                    <rect key="frame" x="-100" y="-100" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="nU2-8d-Ch0" secondAttribute="bottom" constant="60" id="KEk-Uv-e00"/>
+                            <constraint firstAttribute="trailing" secondItem="nU2-8d-Ch0" secondAttribute="trailing" id="KhC-Wq-Q7S"/>
+                            <constraint firstItem="nU2-8d-Ch0" firstAttribute="top" secondItem="tyO-QX-Ee0" secondAttribute="top" id="MPa-XW-T9m"/>
+                            <constraint firstItem="nU2-8d-Ch0" firstAttribute="leading" secondItem="tyO-QX-Ee0" secondAttribute="leading" id="Y16-dR-FMg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="4eJ-Yy-8BW" id="YFy-jd-USt"/>
+                    </connections>
+                </viewController>
+                <customObject id="Kn3-uQ-VOZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="582" y="1761"/>
+        </scene>
+        <!--Ran Emotion Page Controller-->
+        <scene sceneID="iSE-au-e6h">
+            <objects>
+                <pagecontroller storyboardIdentifier="ranPage" transitionStyle="horizontalStrip" id="Wn4-SX-6lS" customClass="RanEmotionPageController" sceneMemberID="viewController">
+                    <view key="view" id="uhd-g1-iIg">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cDG-r2-ied">
+                                <rect key="frame" x="14" y="13" width="81" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Crh-PE-KsL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="leftBtnClick:" target="Wn4-SX-6lS" id="jyT-0p-rtV"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0A7-SC-IUa">
+                                <rect key="frame" x="103" y="13" width="81" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="p9j-lt-wEu">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rightBtnClick:" target="Wn4-SX-6lS" id="ihq-TP-huv"/>
+                                </connections>
+                            </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="EnH-JY-Zy7" customClass="RanPageControl">
+                                <rect key="frame" x="144" y="51" width="163" height="96"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="7Kb-Lk-gnk"/>
+                                    <constraint firstAttribute="width" constant="163" id="WRW-ZL-n0j"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="0A7-SC-IUa" firstAttribute="top" secondItem="EnH-JY-Zy7" secondAttribute="bottom" constant="10" id="5Jj-6F-qOD"/>
+                            <constraint firstItem="EnH-JY-Zy7" firstAttribute="centerX" secondItem="uhd-g1-iIg" secondAttribute="centerX" id="IRK-K0-hnP"/>
+                            <constraint firstAttribute="bottom" secondItem="0A7-SC-IUa" secondAttribute="bottom" constant="20" id="PiZ-1Y-04J"/>
+                            <constraint firstAttribute="bottom" secondItem="cDG-r2-ied" secondAttribute="bottom" constant="20" id="QNw-pY-Gi8"/>
+                            <constraint firstItem="0A7-SC-IUa" firstAttribute="leading" secondItem="cDG-r2-ied" secondAttribute="trailing" constant="20" id="caK-gU-rSq"/>
+                            <constraint firstItem="cDG-r2-ied" firstAttribute="leading" secondItem="uhd-g1-iIg" secondAttribute="leading" constant="20" id="gO1-oB-gTQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ranPageControl" destination="EnH-JY-Zy7" id="vSF-xP-hGx"/>
+                    </connections>
+                </pagecontroller>
+                <customObject id="ZLV-T7-JFW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051" y="1761"/>
         </scene>
         <!--Ran Login View Controller-->
         <scene sceneID="hIz-AP-VOD">

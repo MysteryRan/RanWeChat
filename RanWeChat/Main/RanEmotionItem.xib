@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="RanEmotionItem">
+            <connections>
+                <outlet property="titleLabel" destination="MLt-8V-hNI" id="YFX-20-d0k"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="86"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Njv-ZF-1wA">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="86"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="XEZ-ki-8eu"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MLt-8V-hNI">
+                    <rect key="frame" x="222" y="35" width="37" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="JSN-Fo-zre">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="MLt-8V-hNI" secondAttribute="bottom" constant="35" id="5Hg-cl-FE0"/>
+                <constraint firstAttribute="bottom" secondItem="Njv-ZF-1wA" secondAttribute="bottom" id="6LG-sY-7HD"/>
+                <constraint firstAttribute="trailing" secondItem="Njv-ZF-1wA" secondAttribute="trailing" id="Jqg-hB-7SI"/>
+                <constraint firstItem="Njv-ZF-1wA" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="YS2-vO-Brp"/>
+                <constraint firstItem="Njv-ZF-1wA" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="nQt-gY-BEx"/>
+                <constraint firstItem="MLt-8V-hNI" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="q2o-mf-Rud"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <collectionViewItem id="b2M-cO-pdk" customClass="RanEmotionItem"/>
+    </objects>
+</document>

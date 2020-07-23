@@ -15,6 +15,12 @@
 		1A6C5F9E24B810B8007F190F /* RanLastMessageModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9D24B810B8007F190F /* RanLastMessageModal.m */; };
 		1A6C5FA024B8333E007F190F /* detialtalk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9F24B8333E007F190F /* detialtalk.plist */; };
 		1A6C5FA924B85AEB007F190F /* RanChatDetialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C5FA824B85AEB007F190F /* RanChatDetialCell.m */; };
+		1AA7095D24C7DB9700BC83EA /* RanEmotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7095C24C7DB9700BC83EA /* RanEmotionViewController.m */; };
+		1AA7096F24C81A9900BC83EA /* RanEmotionPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7096E24C81A9900BC83EA /* RanEmotionPageController.m */; };
+		1AA7097324C8202200BC83EA /* RanEmotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7097124C8202200BC83EA /* RanEmotionItem.m */; };
+		1AA7097424C8202200BC83EA /* RanEmotionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA7097224C8202200BC83EA /* RanEmotionItem.xib */; };
+		1ABDC6A324C938B700947893 /* RanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDC6A024C938B700947893 /* RanButton.m */; };
+		1ABDC6A424C938B700947893 /* RanPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDC6A224C938B700947893 /* RanPageControl.m */; };
 		1AD2F07224B6F1F500618CFB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F07124B6F1F500618CFB /* AppDelegate.m */; };
 		1AD2F07724B6F1F900618CFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AD2F07624B6F1F900618CFB /* Assets.xcassets */; };
 		1AD2F07A24B6F1F900618CFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AD2F07824B6F1F900618CFB /* Main.storyboard */; };
@@ -64,6 +70,17 @@
 		1A6C5F9F24B8333E007F190F /* detialtalk.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = detialtalk.plist; sourceTree = "<group>"; };
 		1A6C5FA724B85AEB007F190F /* RanChatDetialCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanChatDetialCell.h; sourceTree = "<group>"; };
 		1A6C5FA824B85AEB007F190F /* RanChatDetialCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanChatDetialCell.m; sourceTree = "<group>"; };
+		1AA7095B24C7DB9700BC83EA /* RanEmotionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanEmotionViewController.h; sourceTree = "<group>"; };
+		1AA7095C24C7DB9700BC83EA /* RanEmotionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanEmotionViewController.m; sourceTree = "<group>"; };
+		1AA7096D24C81A9900BC83EA /* RanEmotionPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanEmotionPageController.h; sourceTree = "<group>"; };
+		1AA7096E24C81A9900BC83EA /* RanEmotionPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanEmotionPageController.m; sourceTree = "<group>"; };
+		1AA7097024C8202200BC83EA /* RanEmotionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanEmotionItem.h; sourceTree = "<group>"; };
+		1AA7097124C8202200BC83EA /* RanEmotionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanEmotionItem.m; sourceTree = "<group>"; };
+		1AA7097224C8202200BC83EA /* RanEmotionItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RanEmotionItem.xib; sourceTree = "<group>"; };
+		1ABDC69F24C938B600947893 /* RanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RanButton.h; sourceTree = "<group>"; };
+		1ABDC6A024C938B700947893 /* RanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RanButton.m; sourceTree = "<group>"; };
+		1ABDC6A124C938B700947893 /* RanPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RanPageControl.h; sourceTree = "<group>"; };
+		1ABDC6A224C938B700947893 /* RanPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RanPageControl.m; sourceTree = "<group>"; };
 		1AD2F06D24B6F1F500618CFB /* RanWeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RanWeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AD2F07024B6F1F500618CFB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1AD2F07124B6F1F500618CFB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -217,6 +234,17 @@
 				1A1642A824C1937F0045FAFA /* RanChatImageView.m */,
 				1A1642AA24C195A60045FAFA /* RanChatRightImageView.h */,
 				1A1642AB24C195A60045FAFA /* RanChatRightImageView.m */,
+				1AA7095B24C7DB9700BC83EA /* RanEmotionViewController.h */,
+				1AA7095C24C7DB9700BC83EA /* RanEmotionViewController.m */,
+				1AA7096D24C81A9900BC83EA /* RanEmotionPageController.h */,
+				1AA7096E24C81A9900BC83EA /* RanEmotionPageController.m */,
+				1AA7097024C8202200BC83EA /* RanEmotionItem.h */,
+				1AA7097124C8202200BC83EA /* RanEmotionItem.m */,
+				1AA7097224C8202200BC83EA /* RanEmotionItem.xib */,
+				1ABDC69F24C938B600947893 /* RanButton.h */,
+				1ABDC6A024C938B700947893 /* RanButton.m */,
+				1ABDC6A124C938B700947893 /* RanPageControl.h */,
+				1ABDC6A224C938B700947893 /* RanPageControl.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -284,6 +312,7 @@
 				1AD2F07724B6F1F900618CFB /* Assets.xcassets in Resources */,
 				1A6C5FA024B8333E007F190F /* detialtalk.plist in Resources */,
 				1A6C5F9B24B80AE0007F190F /* lasttalklist.plist in Resources */,
+				1AA7097424C8202200BC83EA /* RanEmotionItem.xib in Resources */,
 				1AD2F07A24B6F1F900618CFB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,9 +366,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA7097324C8202200BC83EA /* RanEmotionItem.m in Sources */,
 				1A1642A924C1937F0045FAFA /* RanChatImageView.m in Sources */,
+				1ABDC6A424C938B700947893 /* RanPageControl.m in Sources */,
 				1AD2F08924B6F2F500618CFB /* RanLoginViewController.m in Sources */,
+				1ABDC6A324C938B700947893 /* RanButton.m in Sources */,
 				1ADCF9A124BD847100C15503 /* RanDragTableView.m in Sources */,
+				1AA7096F24C81A9900BC83EA /* RanEmotionPageController.m in Sources */,
 				1A6ACD6A24BC4C7E00587CC0 /* RanLastTalkHeaderCell.m in Sources */,
 				1A6C5F9E24B810B8007F190F /* RanLastMessageModal.m in Sources */,
 				1A6C5FA924B85AEB007F190F /* RanChatDetialCell.m in Sources */,
@@ -353,6 +386,7 @@
 				1AD2F08624B6F2DA00618CFB /* RanLoginWindowController.m in Sources */,
 				1AD2F09C24B70A3800618CFB /* RanContactRowView.m in Sources */,
 				1A1642AC24C195A60045FAFA /* RanChatRightImageView.m in Sources */,
+				1AA7095D24C7DB9700BC83EA /* RanEmotionViewController.m in Sources */,
 				1AD2F09124B6FB9700618CFB /* RanMainViewController.m in Sources */,
 				1AD2F09F24B70E0700618CFB /* RanHeaderCell.m in Sources */,
 				1AD2F0A224B711A400618CFB /* RanLastTalkTableView.m in Sources */,

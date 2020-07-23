@@ -33,6 +33,8 @@
 @property(nonatomic, strong)NSMutableArray *lasttalkArray;
 @property(nonatomic, strong)NSMutableArray *detialArray;
 
+@property (nonatomic,strong) NSPopover *popover;
+
 @end
 
 @implementation RanMainViewController
@@ -289,6 +291,29 @@
            }];
     
 }
+
+- (IBAction)showEmotionClick:(NSButton *)sender {
+    
+    NSViewController *vc = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"ranPage"];
+    
+    self.popover.contentViewController = vc;
+    [self.popover showRelativeToRect:sender.bounds ofView:sender preferredEdge:NSRectEdgeMaxY];
+    
+    NSView *popoverView = [[vc view] superview];
+    [popoverView setWantsLayer:YES];
+    [[popoverView layer] setBackgroundColor:[NSColor whiteColor].CGColor];
+}
+
+-(NSPopover *)popover {
+    if (!_popover) {
+        _popover = [[NSPopover alloc]init];
+        _popover.behavior = NSPopoverBehaviorTransient;
+        _popover.contentSize = NSMakeSize(400, 300);
+        _popover.animates = NO;
+    }
+    return _popover;
+}
+
 
 
 
