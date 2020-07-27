@@ -19,6 +19,9 @@
 #import "RanLastTalkHeaderCell.h"
 #import "RanDragTableView.h"
 
+//#import "RanHeaderViewController.h"
+#import "RanHeaderWindowController.h"
+
 
 @interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate,ranDragFileDlegate,resendDelegate>
 
@@ -314,6 +317,12 @@
     return _popover;
 }
 
+- (IBAction)headerClick:(NSButton *)sender {
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    RanHeaderWindowController *imWindowController = [storyboard instantiateControllerWithIdentifier:@"header"];
+    imWindowController.parentRect = self.view.window.frame;
+    [imWindowController showWindow:nil];
+}
 
 
 

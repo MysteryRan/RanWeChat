@@ -15,6 +15,8 @@
 		1A6C5F9E24B810B8007F190F /* RanLastMessageModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9D24B810B8007F190F /* RanLastMessageModal.m */; };
 		1A6C5FA024B8333E007F190F /* detialtalk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9F24B8333E007F190F /* detialtalk.plist */; };
 		1A6C5FA924B85AEB007F190F /* RanChatDetialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C5FA824B85AEB007F190F /* RanChatDetialCell.m */; };
+		1A85FA8A24CEAF5B00DC3971 /* RanHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA8924CEAF5B00DC3971 /* RanHeaderViewController.m */; };
+		1A85FA8D24CEAF7600DC3971 /* RanHeaderWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA8C24CEAF7600DC3971 /* RanHeaderWindowController.m */; };
 		1AA7095D24C7DB9700BC83EA /* RanEmotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7095C24C7DB9700BC83EA /* RanEmotionViewController.m */; };
 		1AA7096F24C81A9900BC83EA /* RanEmotionPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7096E24C81A9900BC83EA /* RanEmotionPageController.m */; };
 		1AA7097324C8202200BC83EA /* RanEmotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7097124C8202200BC83EA /* RanEmotionItem.m */; };
@@ -70,6 +72,10 @@
 		1A6C5F9F24B8333E007F190F /* detialtalk.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = detialtalk.plist; sourceTree = "<group>"; };
 		1A6C5FA724B85AEB007F190F /* RanChatDetialCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanChatDetialCell.h; sourceTree = "<group>"; };
 		1A6C5FA824B85AEB007F190F /* RanChatDetialCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanChatDetialCell.m; sourceTree = "<group>"; };
+		1A85FA8824CEAF5B00DC3971 /* RanHeaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanHeaderViewController.h; sourceTree = "<group>"; };
+		1A85FA8924CEAF5B00DC3971 /* RanHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanHeaderViewController.m; sourceTree = "<group>"; };
+		1A85FA8B24CEAF7600DC3971 /* RanHeaderWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanHeaderWindowController.h; sourceTree = "<group>"; };
+		1A85FA8C24CEAF7600DC3971 /* RanHeaderWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanHeaderWindowController.m; sourceTree = "<group>"; };
 		1AA7095B24C7DB9700BC83EA /* RanEmotionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanEmotionViewController.h; sourceTree = "<group>"; };
 		1AA7095C24C7DB9700BC83EA /* RanEmotionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanEmotionViewController.m; sourceTree = "<group>"; };
 		1AA7096D24C81A9900BC83EA /* RanEmotionPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanEmotionPageController.h; sourceTree = "<group>"; };
@@ -245,6 +251,10 @@
 				1ABDC6A024C938B700947893 /* RanButton.m */,
 				1ABDC6A124C938B700947893 /* RanPageControl.h */,
 				1ABDC6A224C938B700947893 /* RanPageControl.m */,
+				1A85FA8B24CEAF7600DC3971 /* RanHeaderWindowController.h */,
+				1A85FA8C24CEAF7600DC3971 /* RanHeaderWindowController.m */,
+				1A85FA8824CEAF5B00DC3971 /* RanHeaderViewController.h */,
+				1A85FA8924CEAF5B00DC3971 /* RanHeaderViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -374,6 +384,7 @@
 				1ADCF9A124BD847100C15503 /* RanDragTableView.m in Sources */,
 				1AA7096F24C81A9900BC83EA /* RanEmotionPageController.m in Sources */,
 				1A6ACD6A24BC4C7E00587CC0 /* RanLastTalkHeaderCell.m in Sources */,
+				1A85FA8A24CEAF5B00DC3971 /* RanHeaderViewController.m in Sources */,
 				1A6C5F9E24B810B8007F190F /* RanLastMessageModal.m in Sources */,
 				1A6C5FA924B85AEB007F190F /* RanChatDetialCell.m in Sources */,
 				1AD2F07D24B6F1F900618CFB /* main.m in Sources */,
@@ -385,6 +396,7 @@
 				1AD2F0B024B71CEA00618CFB /* RanVideoChatWindow.m in Sources */,
 				1AD2F08624B6F2DA00618CFB /* RanLoginWindowController.m in Sources */,
 				1AD2F09C24B70A3800618CFB /* RanContactRowView.m in Sources */,
+				1A85FA8D24CEAF7600DC3971 /* RanHeaderWindowController.m in Sources */,
 				1A1642AC24C195A60045FAFA /* RanChatRightImageView.m in Sources */,
 				1AA7095D24C7DB9700BC83EA /* RanEmotionViewController.m in Sources */,
 				1AD2F09124B6FB9700618CFB /* RanMainViewController.m in Sources */,
