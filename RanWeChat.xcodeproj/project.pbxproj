@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		1A1642A924C1937F0045FAFA /* RanChatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1642A824C1937F0045FAFA /* RanChatImageView.m */; };
 		1A1642AC24C195A60045FAFA /* RanChatRightImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1642AB24C195A60045FAFA /* RanChatRightImageView.m */; };
+		1A4BB86D24D00B4D0021CAC1 /* RanPeopleInvitedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4BB86C24D00B4D0021CAC1 /* RanPeopleInvitedController.m */; };
 		1A6ACD6A24BC4C7E00587CC0 /* RanLastTalkHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6ACD6924BC4C7E00587CC0 /* RanLastTalkHeaderCell.m */; };
 		1A6ACD6D24BC5D4D00587CC0 /* RanTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6ACD6C24BC5D4D00587CC0 /* RanTextView.m */; };
 		1A6C5F9B24B80AE0007F190F /* lasttalklist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9A24B80AE0007F190F /* lasttalklist.plist */; };
 		1A6C5F9E24B810B8007F190F /* RanLastMessageModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9D24B810B8007F190F /* RanLastMessageModal.m */; };
 		1A6C5FA024B8333E007F190F /* detialtalk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9F24B8333E007F190F /* detialtalk.plist */; };
 		1A6C5FA924B85AEB007F190F /* RanChatDetialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C5FA824B85AEB007F190F /* RanChatDetialCell.m */; };
+		1A7ADA6D24D1142B0002164D /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD2F0A324B717D900618CFB /* WebRTC.framework */; };
+		1A7ADA6E24D1142B0002164D /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD2F0A324B717D900618CFB /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A85FA8A24CEAF5B00DC3971 /* RanHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA8924CEAF5B00DC3971 /* RanHeaderViewController.m */; };
 		1A85FA8D24CEAF7600DC3971 /* RanHeaderWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA8C24CEAF7600DC3971 /* RanHeaderWindowController.m */; };
 		1AA7095D24C7DB9700BC83EA /* RanEmotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7095C24C7DB9700BC83EA /* RanEmotionViewController.m */; };
@@ -35,8 +38,6 @@
 		1AD2F09C24B70A3800618CFB /* RanContactRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F09A24B70A3800618CFB /* RanContactRowView.m */; };
 		1AD2F09F24B70E0700618CFB /* RanHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F09E24B70E0700618CFB /* RanHeaderCell.m */; };
 		1AD2F0A224B711A400618CFB /* RanLastTalkTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F0A124B711A400618CFB /* RanLastTalkTableView.m */; };
-		1AD2F0AB24B71A1600618CFB /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD2F0A324B717D900618CFB /* WebRTC.framework */; };
-		1AD2F0AC24B71A1600618CFB /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD2F0A324B717D900618CFB /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AD2F0B024B71CEA00618CFB /* RanVideoChatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F0AF24B71CEA00618CFB /* RanVideoChatWindow.m */; };
 		1AD2F0B324B71E2B00618CFB /* RanVideChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F0B224B71E2B00618CFB /* RanVideChatController.m */; };
 		1ADCF9A124BD847100C15503 /* RanDragTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADCF9A024BD847100C15503 /* RanDragTableView.m */; };
@@ -44,13 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1AD2F0AD24B71A1600618CFB /* Embed Frameworks */ = {
+		1A7ADA6F24D1142B0002164D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1AD2F0AC24B71A1600618CFB /* WebRTC.framework in Embed Frameworks */,
+				1A7ADA6E24D1142B0002164D /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +63,8 @@
 		1A1642A824C1937F0045FAFA /* RanChatImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanChatImageView.m; sourceTree = "<group>"; };
 		1A1642AA24C195A60045FAFA /* RanChatRightImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanChatRightImageView.h; sourceTree = "<group>"; };
 		1A1642AB24C195A60045FAFA /* RanChatRightImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanChatRightImageView.m; sourceTree = "<group>"; };
+		1A4BB86B24D00B4D0021CAC1 /* RanPeopleInvitedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanPeopleInvitedController.h; sourceTree = "<group>"; };
+		1A4BB86C24D00B4D0021CAC1 /* RanPeopleInvitedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanPeopleInvitedController.m; sourceTree = "<group>"; };
 		1A6ACD6824BC4C7E00587CC0 /* RanLastTalkHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanLastTalkHeaderCell.h; sourceTree = "<group>"; };
 		1A6ACD6924BC4C7E00587CC0 /* RanLastTalkHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanLastTalkHeaderCell.m; sourceTree = "<group>"; };
 		1A6ACD6B24BC5D4D00587CC0 /* RanTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanTextView.h; sourceTree = "<group>"; };
@@ -128,7 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E50697CC01AF2DF00E69F0 /* Pods_RanWeChat.framework in Frameworks */,
-				1AD2F0AB24B71A1600618CFB /* WebRTC.framework in Frameworks */,
+				1A7ADA6D24D1142B0002164D /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +258,8 @@
 				1A85FA8C24CEAF7600DC3971 /* RanHeaderWindowController.m */,
 				1A85FA8824CEAF5B00DC3971 /* RanHeaderViewController.h */,
 				1A85FA8924CEAF5B00DC3971 /* RanHeaderViewController.m */,
+				1A4BB86B24D00B4D0021CAC1 /* RanPeopleInvitedController.h */,
+				1A4BB86C24D00B4D0021CAC1 /* RanPeopleInvitedController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -271,7 +276,7 @@
 				1AD2F06A24B6F1F500618CFB /* Frameworks */,
 				1AD2F06B24B6F1F500618CFB /* Resources */,
 				D8E7CF3543228DDF5E0180B6 /* [CP] Embed Pods Frameworks */,
-				1AD2F0AD24B71A1600618CFB /* Embed Frameworks */,
+				1A7ADA6F24D1142B0002164D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -402,6 +407,7 @@
 				1AD2F09124B6FB9700618CFB /* RanMainViewController.m in Sources */,
 				1AD2F09F24B70E0700618CFB /* RanHeaderCell.m in Sources */,
 				1AD2F0A224B711A400618CFB /* RanLastTalkTableView.m in Sources */,
+				1A4BB86D24D00B4D0021CAC1 /* RanPeopleInvitedController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,8 +547,10 @@
 					"$(PROJECT_DIR)/RanWeChat",
 				);
 				INFOPLIST_FILE = RanWeChat/Info.plist;
+				LD_DYLIB_INSTALL_NAME = /usr/local/lib;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ran.RanWeChat;
@@ -563,8 +571,10 @@
 					"$(PROJECT_DIR)/RanWeChat",
 				);
 				INFOPLIST_FILE = RanWeChat/Info.plist;
+				LD_DYLIB_INSTALL_NAME = /usr/local/lib;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ran.RanWeChat;

@@ -74,16 +74,16 @@
     [super viewDidLoad];
     
     // 竖屏聊天
-    [self localImage];
+//    [self localImage];
     
     // 横屏聊天
-//    [self otherlocalImage];
+    [self otherlocalImage];
     
     // 屏幕共享
 //    [self screenShare];
     [self createConnection];
     
-    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.137.65:9000/socket.io"];
+    NSURL* url = [[NSURL alloc] initWithString:@"http://192.168.137.243:9000/socket.io"];
     self.manager = [[SocketManager alloc] initWithSocketURL:url config:@{@"log": @NO, @"compress": @NO}];
     self.socket = self.manager.defaultSocket;
 
@@ -96,6 +96,11 @@
 
     [self.socket on:@"user-joined" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull ack) {
         NSLog(@"user-joined == %@",data);
+        for (NSString *str in data) {
+            if ([str isEqualToString:@"mac"]) {
+//                [self localImage];
+            }
+        }
     }];
 
     [self.socket on:@"broadcast" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull ack) {
@@ -108,9 +113,6 @@
                     return;
                 }
                 NSLog(@"offer");
-                if (self.pc == nil) {
-                    [self createConnection];
-                }
                 [self handleRemoteOffer:castDic];
             } else if ([msgType isEqual:@(0x02)]) {
                 if ([userId isEqualToString:@"mac"]) {
@@ -139,7 +141,11 @@
     RTCSessionDescription *ddd = [[RTCSessionDescription alloc] initWithType:RTCSdpTypeOffer sdp:dic[@"sdp"]];
     // 发送自己的sdp
     [self.pc setRemoteDescription:ddd completionHandler:^(NSError * _Nullable error) {
+        if (error == nil) {
 
+        } else {
+
+        }
     }];
 }
 
@@ -208,14 +214,26 @@
      NSArray<AVCaptureDevice*>* devices = [RTCCameraVideoCapturer captureDevices];
         if (devices.count > 0) {
 //            AVCaptureDevice* device = devices[0];
-            [RTCPeerConnectionFactory initialize];
+//            [RTCPeerConnectionFactory initialize];
             if (!self.factory) {
-                NSArray<RTCVideoCodecInfo *> *ddd = [RTCDefaultVideoEncoderFactory supportedCodecs];
-                            RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
-                RTCVideoCodecInfo *info = ddd[2];
-                [videoEncoderFactory setPreferredCodec:info];
-                RTCDefaultVideoDecoderFactory *videoDecoderFactory = [[RTCDefaultVideoDecoderFactory alloc]init];
-                self.factory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:videoEncoderFactory decoderFactory:videoDecoderFactory];
+//                NSArray<RTCVideoCodecInfo *> *ddd = [RTCDefaultVideoEncoderFactory supportedCodecs];
+//                            RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
+//                RTCVideoCodecInfo *info = ddd[2];
+//                [videoEncoderFactory setPreferredCodec:info];
+//                RTCDefaultVideoDecoderFactory *videoDecoderFactory = [[RTCDefaultVideoDecoderFactory alloc]init];
+//                self.factory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:videoEncoderFactory decoderFactory:videoDecoderFactory];
+                //先初始化工厂
+                RTCVideoCodecInfo *codecInfo = [[RTCVideoCodecInfo alloc]initWithName:@"VP8"];
+                RTCDefaultVideoEncoderFactory *videoEncoderFactoryr = [[RTCDefaultVideoEncoderFactory alloc]init];
+                id videoDecoderFactory = [[RTCDefaultVideoDecoderFactory alloc]init];
+                // for ( RTCVideoCodecInfo *obj in videoDecoderFactory.supportedCodecs) {
+                // NSLog(@“Decoderobj = %@”,obj.name);
+                // }
+                // for ( RTCVideoCodecInfo *obj in videoEncoderFactoryr.supportedCodecs) {
+                // NSLog(@“Encoderobj = %@”,obj.name);
+                // }
+                videoEncoderFactoryr.preferredCodec = codecInfo;
+                self.factory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:videoEncoderFactoryr decoderFactory:videoDecoderFactory];
             }
             self.localStream = [self.factory mediaStreamWithStreamId:@"RTCmS"];
             self.source = [self.factory videoSource];
@@ -263,14 +281,14 @@
     NSArray<AVCaptureDevice*>* devices = [RTCCameraVideoCapturer captureDevices];
         if (devices.count > 0) {
             AVCaptureDevice* device = devices[0];
-            [RTCPeerConnectionFactory initialize];
             if (!self.factory) {
                  NSArray<RTCVideoCodecInfo *> *ddd = [RTCDefaultVideoEncoderFactory supportedCodecs];
-                            RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
+                RTCDefaultVideoEncoderFactory *videoEncoderFactory = [[RTCDefaultVideoEncoderFactory alloc]init];
                 RTCVideoCodecInfo *info = ddd[2];
                 [videoEncoderFactory setPreferredCodec:info];
                 RTCDefaultVideoDecoderFactory *videoDecoderFactory = [[RTCDefaultVideoDecoderFactory alloc]init];
                 self.factory = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:videoEncoderFactory decoderFactory:videoDecoderFactory];
+//                self.factory = [[RTCPeerConnectionFactory alloc] init];
             }
             self.localStream = [self.factory mediaStreamWithStreamId:@"RTCmS"];
             RTCVideoSource *videosorce = [self.factory videoSource];
@@ -298,8 +316,11 @@
     [self.pc offerForConstraints:[self offerOranswerConstraint] completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable sdpError) {
            if (sdpError == nil) {
                [self.pc setLocalDescription:sdp completionHandler:^(NSError * _Nullable error) {
-                   
+                   if (error == nil) {
 
+                   } else {
+
+                   }
                }];
            }
     }];

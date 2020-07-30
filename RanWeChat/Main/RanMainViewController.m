@@ -324,6 +324,13 @@
     [imWindowController showWindow:nil];
 }
 
+- (IBAction)morePeopleClick:(NSButton *)sender {
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    NSWindowController *imWindowController = [storyboard instantiateControllerWithIdentifier:@"morePeople"];
+    [self.view.window beginSheet:imWindowController.window completionHandler:^(NSModalResponse returnCode) {
+      
+    }];
+}
 
 
 @end
