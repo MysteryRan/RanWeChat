@@ -22,6 +22,8 @@
 //#import "RanHeaderViewController.h"
 #import "RanHeaderWindowController.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate,ranDragFileDlegate,resendDelegate>
 
@@ -88,7 +90,7 @@
 
     
     // 拖拽代理
-    self.detialChatTableView.dragDelegate = self;
+//    self.detialChatTableView.dragDelegate = self;
     self.detialChatTableView.usesAutomaticRowHeights = YES;
     [self.detialChatTableView reloadData];
     [self.detialChatTableView scrollRowToVisible:self.detialArray.count - 1];
@@ -322,6 +324,12 @@
     RanHeaderWindowController *imWindowController = [storyboard instantiateControllerWithIdentifier:@"header"];
     imWindowController.parentRect = self.view.window.frame;
     [imWindowController showWindow:nil];
+    
+    
+//    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//    RanHeaderWindowController *imWindowController = [storyboard instantiateControllerWithIdentifier:@"playVideo"];
+//    [imWindowController showWindow:nil];
+    
 }
 
 - (IBAction)morePeopleClick:(NSButton *)sender {

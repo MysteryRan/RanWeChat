@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="RanInvitedItem">
+            <connections>
+                <outlet property="cancelBtn" destination="FR0-Xe-wMT" id="Hu4-8P-o9F"/>
+                <outlet property="nameLabel" destination="nKq-X3-PzE" id="jw8-ym-NZ9"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FR0-Xe-wMT">
+                    <rect key="frame" x="405" y="244" width="81" height="32"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VkS-4o-VHz">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="cancelInvitedClick:" target="-2" id="PVD-5B-Ywt"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nKq-X3-PzE">
+                    <rect key="frame" x="222" y="128" width="37" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="SPH-IH-Awb">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="nKq-X3-PzE" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="HLi-xR-EDq"/>
+                <constraint firstAttribute="trailing" secondItem="FR0-Xe-wMT" secondAttribute="trailing" id="HOO-KS-Shl"/>
+                <constraint firstItem="nKq-X3-PzE" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="Kpy-oR-Sd4"/>
+                <constraint firstItem="FR0-Xe-wMT" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="v0i-Xw-9bw"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <collectionViewItem id="VFu-Mg-9IK" customClass="RanInvitedItem"/>
+    </objects>
+</document>

@@ -39,6 +39,7 @@ typedef NS_ENUM(NSUInteger, SendStatus) {
 @property (nonatomic, assign)MessageType messageType;
 @property (nonatomic, assign)SendStatus sendStatus;
 
+@property (nonatomic, assign)BOOL isSelected;
 
 @property (nonatomic, assign)CGFloat contentHeight;
 @property (nonatomic, assign)CGFloat contentWidth;
