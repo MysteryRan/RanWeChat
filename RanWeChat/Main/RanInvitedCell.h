@@ -10,13 +10,10 @@
 #import "RanLastMessageModal.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^chooseAction)(RanLastMessageModal *modal);
 
 @interface RanInvitedCell : NSTableCellView
 
 @property(nonatomic,strong)RanLastMessageModal *modal;
-
-@property(nonatomic, copy)chooseAction action;
 
 @end
 

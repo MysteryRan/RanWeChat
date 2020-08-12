@@ -18,7 +18,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Njv-ZF-1wA">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="86"/>
+                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="86"/>
+                    <constraints>
+                        <constraint firstAttribute="width" id="m4J-CI-a56"/>
+                    </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="XEZ-ki-8eu"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MLt-8V-hNI">
@@ -26,14 +29,13 @@
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="JSN-Fo-zre">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="MLt-8V-hNI" secondAttribute="bottom" constant="35" id="5Hg-cl-FE0"/>
                 <constraint firstAttribute="bottom" secondItem="Njv-ZF-1wA" secondAttribute="bottom" id="6LG-sY-7HD"/>
-                <constraint firstAttribute="trailing" secondItem="Njv-ZF-1wA" secondAttribute="trailing" id="Jqg-hB-7SI"/>
                 <constraint firstItem="Njv-ZF-1wA" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="YS2-vO-Brp"/>
                 <constraint firstItem="Njv-ZF-1wA" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="nQt-gY-BEx"/>
                 <constraint firstItem="MLt-8V-hNI" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="q2o-mf-Rud"/>

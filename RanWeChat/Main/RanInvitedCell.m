@@ -29,12 +29,6 @@
     // Drawing code here.
 }
 
-- (IBAction)chooseClick:(NSButton *)sender {
-    if (![self.modal.name isEqualToString:@"ccc"]) {
-        self.action(self.modal);
-    }
-}
-
 - (void)setModal:(RanLastMessageModal *)modal {
     _modal = modal;
     self.nameLab.stringValue = modal.name;

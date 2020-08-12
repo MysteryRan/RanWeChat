@@ -57,7 +57,7 @@
 }
 
 - (void)pageControllerDidEndLiveTransition:(NSPageController *)pageController {
-    NSLog(@"%ld",(long)pageController.selectedIndex);
+//    NSLog(@"%ld",(long)pageController.selectedIndex);
     self.ranPageControl.currentNum = pageController.selectedIndex;
     [self completeTransition];
 }

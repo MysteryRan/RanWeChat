@@ -14,6 +14,8 @@
 
 @interface RanPeopleInvitedController ()<NSTabViewDelegate,NSTableViewDataSource>
 
+@property (weak) IBOutlet NSTextField *tipsLab;
+
 @property (weak) IBOutlet NSTableView *invitedTableView;
 @property (weak) IBOutlet NSCollectionView *collectionView;
 
@@ -61,20 +63,6 @@
 -(NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
     RanInvitedCell *cell = [tableView makeViewWithIdentifier:@"invited" owner:self];
     cell.modal = self.friends[row];
-    cell.action = ^(RanLastMessageModal * _Nonnull modal) {
-        modal.isSelected = !modal.isSelected;
-        if (modal.isSelected) {
-            [self.selectedFriends addObject:modal];
-            [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:YES];
-            [self.collectionView reloadData];
-        } else {
-            [tableView deselectRow:row];
-            [self.selectedFriends removeObject:modal];
-            [self.collectionView reloadData];
-        }
-        
-        [tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
-    };
     return cell;
 }
 
@@ -88,13 +76,22 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-//    NSLog(@"------%ld",(long)row);
-//    RanLastMessageModal *modal = self.friends[row];
-//    modal.isSelected = !modal.isSelected;
-//    [tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
-//    return YES;
-    return NO;
-
+    
+    [tableView deselectRow:row];
+    RanLastMessageModal *modal = self.friends[row];
+    modal.isSelected = !modal.isSelected;
+    if (modal.isSelected) {
+        [self.selectedFriends addObject:modal];
+        [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:YES];
+        [self.collectionView reloadData];
+    } else {
+        [tableView deselectRow:row];
+        [self.selectedFriends removeObject:modal];
+        [self.collectionView reloadData];
+    }
+    self.tipsLab.stringValue = [NSString stringWithFormat:@"已选择个%lu联系人",(unsigned long)self.selectedFriends.count];
+    [tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
+    return YES;
 }
 
 //选择的东西
@@ -137,6 +134,7 @@
         }
         [collectionView reloadData];
         [self.invitedTableView reloadData];
+        self.tipsLab.stringValue = [NSString stringWithFormat:@"已选择个%lu联系人",(unsigned long)self.selectedFriends.count];
     };
     return item;
 }

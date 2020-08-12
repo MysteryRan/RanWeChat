@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do view setup here.
     [self.collectionView registerNib:[[NSNib alloc] initWithNibNamed:@"RanEmotionItem" bundle:nil] forItemWithIdentifier:@"cell"];
+    self.collectionView.selectable = YES;
 }
 
 - (void)setDataSource:(NSMutableArray *)dataSource {
@@ -32,9 +33,15 @@
     return self.dataSource.count;
 }
 
-- (void)collectionView:(NSCollectionView *)collectionView didSelectItemsAtIndexPaths:(NSSet<NSIndexPath *> *)indexPaths {
+//- (void)collectionView:(NSCollectionView *)collectionView didSelectItemsAtIndexPaths:(NSSet<NSIndexPath *> *)indexPaths {
+//
+//}
+//
+//- (NSSet<NSIndexPath *> *)collectionView:(NSCollectionView *)collectionView shouldSelectItemsAtIndexPaths:(NSSet<NSIndexPath *> *)indexPaths {
+//    return [NSSet setWithArray:@[[NSIndexPath indexPathWithIndex:0]]];
+//}
 
-}
+
 
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
     RanEmotionItem *item = [collectionView makeItemWithIdentifier:@"cell" forIndexPath:indexPath];
