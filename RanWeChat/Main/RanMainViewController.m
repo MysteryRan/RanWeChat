@@ -23,6 +23,7 @@
 #import "RanHeaderWindowController.h"
 
 #import <AVFoundation/AVFoundation.h>
+#import "Masonry.h"
 
 
 @interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate,ranDragFileDlegate,resendDelegate>
@@ -34,11 +35,15 @@
 
 @property (weak) IBOutlet NSView *sendCoverView;
 
+@property (weak) IBOutlet NSView *rightView;
+
 
 @property(nonatomic, strong)NSMutableArray *lasttalkArray;
 @property(nonatomic, strong)NSMutableArray *detialArray;
 
 @property (nonatomic,strong) NSPopover *popover;
+
+@property (weak) IBOutlet NSLayoutConstraint *rightBarSide;
 
 @end
 
@@ -114,8 +119,12 @@
     [self.detialChatTableView setColumnAutoresizingStyle:NSTableViewUniformColumnAutoresizingStyle];
         //最后一行自动宽等比增减
     //    [self.treeView sizeLastColumnToFit];
-        //app第一次运行Column 自动宽等比增减，否则会有滚动条
-        [self.detialChatTableView sizeToFit];
+    //app第一次运行Column 自动宽等比增减，否则会有滚动条
+    [self.detialChatTableView sizeToFit];
+    
+    // 右侧sideBar
+    self.rightView.wantsLayer = YES;
+    self.rightView.layer.backgroundColor = [NSColor redColor].CGColor;
 }
 
 
@@ -340,5 +349,30 @@
     }];
 }
 
+- (IBAction)showRightSideClick:(NSButton *)sender {
+    
+//    NSAnimationContext.runAnimationGroup({ (context) in
+//        context.duration = 0.3
+//      context.timingFunction = CAMediaTimingFunction(name: .easeIn)
+//      sideBarRightConstraint.animator().constant = 0
+//    }) {
+//      self.sidebarAnimationState = .shown
+//      self.sideBarStatus = type
+//    }
+    
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
+        context.duration = 0.2;
+        context.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn];
+        if (self.rightBarSide.constant == 0) {
+            [self.rightBarSide animator].constant = 200;
+        } else {
+            [self.rightBarSide animator].constant = 0;
+        }
+    }];
+}
+
+- (void)mouseUp:(NSEvent *)event {
+    [self.rightBarSide animator].constant = 0;
+}
 
 @end
