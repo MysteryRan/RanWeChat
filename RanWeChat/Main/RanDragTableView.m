@@ -12,6 +12,8 @@
 
 @property(nonatomic, assign)BOOL isDragIn;
 
+@property(nonatomic)NSPoint beginPoint;
+
 @end
 
 @implementation RanDragTableView
@@ -74,6 +76,23 @@
 
 - (void)drawContextMenuHighlightForRow:(NSInteger)row {
 
+}
+
+- (void)mouseDown:(NSEvent *)event {
+//    NSLog(@"--->");
+//    NSLog(@"%@", NSStringFromPoint([NSEvent mouseLocation]));
+    self.beginPoint = [NSEvent mouseLocation];
+}
+
+
+- (void)mouseUp:(NSEvent *)event {
+    NSLog(@"up uop uop up");
+    NSLog(@"%@", NSStringFromPoint([NSEvent mouseLocation]));
+    // 开始画线
+}
+
+- (void)mouseMoved:(NSEvent *)event {
+    
 }
 
 

@@ -7,8 +7,11 @@
 //
 
 #import "RanChatImageView.h"
+#import <Quartz/Quartz.h>
+#import <QuickLook/QuickLook.h>
 
-@interface RanChatImageView()<NSPasteboardItemDataProvider, NSDraggingSource>
+@interface RanChatImageView()<NSPasteboardItemDataProvider, NSDraggingSource,QLPreviewPanelDelegate,QLPreviewPanelDataSource>
+@property (nonatomic,strong) QLPreviewPanel *previewPanel;
 
 @end
 
@@ -16,6 +19,11 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
+    
+    self.previewPanel = [QLPreviewPanel sharedPreviewPanel];
+    self.previewPanel.delegate = self;
+    self.previewPanel.dataSource = self;
+
     
     /*
      ltopApoint == 上面的点
@@ -325,6 +333,11 @@
     /* 拖拽失败后是否返回动画，YES有动画，NO无动画 */
     draggingSession.animatesToStartingPositionsOnCancelOrFail = YES;
 //    draggingSession.draggingFormation = NSDraggingFormationNone;
+    
+    // 点击事件
+//    [NSApp sendAction:[self action] to:[self target] from:self];
+    [self.previewPanel makeKeyAndOrderFront:self];
+
 }
 
 #pragma mark - NSDraggingSource
@@ -374,6 +387,39 @@
 //        [pasteboard setPropertyList:@[] forType:NSFilenamesPboardType];//多文件时
     }
 }
+
+//MARK: QLPreviewPanelDelegate,QLPreviewPanelDataSource
+-(NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel *)panel {
+    return 3;
+}
+-(id<QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index {
+    if (index == 0) {
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"1" ofType:@"png"];
+        
+        return [NSURL fileURLWithPath:path];
+    } else if (index == 1) {
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"hubblecast" ofType:@"m4v"];
+        
+        return [NSURL fileURLWithPath:path];
+    } else {
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"nwn" ofType:@"mp4"];
+               
+        return [NSURL fileURLWithPath:path];
+    }
+
+}
+-(BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel {
+    return YES;
+}
+-(void)beginPreviewPanelControl:(QLPreviewPanel *)panel {
+    
+}
+-(void)endPreviewPanelControl:(QLPreviewPanel *)panel {
+    self.previewPanel.delegate = nil;
+    self.previewPanel.dataSource = nil;
+}
+
+
 
 
 @end

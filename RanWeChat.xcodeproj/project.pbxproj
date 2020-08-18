@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0AE2C624EB6DA900D7EE91 /* nwn.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1A0AE2C424EB6DA900D7EE91 /* nwn.mp4 */; };
+		1A0AE2C724EB6DA900D7EE91 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0AE2C524EB6DA900D7EE91 /* 1.png */; };
+		1A0AE2CB24EB6DCA00D7EE91 /* hubblecast.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 1A0AE2CA24EB6DCA00D7EE91 /* hubblecast.m4v */; };
 		1A1642A924C1937F0045FAFA /* RanChatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1642A824C1937F0045FAFA /* RanChatImageView.m */; };
 		1A1642AC24C195A60045FAFA /* RanChatRightImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1642AB24C195A60045FAFA /* RanChatRightImageView.m */; };
 		1A16BC5C24E22F2A00C0D02C /* RanInvitedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16BC5A24E22F2A00C0D02C /* RanInvitedItem.m */; };
@@ -45,7 +48,6 @@
 		1AD2F0B024B71CEA00618CFB /* RanVideoChatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F0AF24B71CEA00618CFB /* RanVideoChatWindow.m */; };
 		1AD2F0B324B71E2B00618CFB /* RanVideChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2F0B224B71E2B00618CFB /* RanVideChatController.m */; };
 		1ADCF9A124BD847100C15503 /* RanDragTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADCF9A024BD847100C15503 /* RanDragTableView.m */; };
-		1AF00CA224D2BFBF005655BA /* hubblecast.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 1AF00CA124D2BFBF005655BA /* hubblecast.m4v */; };
 		1AF00CA524D2C104005655BA /* RanPlayVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF00CA424D2C104005655BA /* RanPlayVideoController.m */; };
 		E9E50697CC01AF2DF00E69F0 /* Pods_RanWeChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6452AEB1AB14D207741BDF2 /* Pods_RanWeChat.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A0AE2C424EB6DA900D7EE91 /* nwn.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nwn.mp4; sourceTree = "<group>"; };
+		1A0AE2C524EB6DA900D7EE91 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		1A0AE2CA24EB6DCA00D7EE91 /* hubblecast.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = hubblecast.m4v; sourceTree = "<group>"; };
 		1A1642A724C1937F0045FAFA /* RanChatImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanChatImageView.h; sourceTree = "<group>"; };
 		1A1642A824C1937F0045FAFA /* RanChatImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanChatImageView.m; sourceTree = "<group>"; };
 		1A1642AA24C195A60045FAFA /* RanChatRightImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanChatRightImageView.h; sourceTree = "<group>"; };
@@ -132,7 +137,6 @@
 		1AD2F0B224B71E2B00618CFB /* RanVideChatController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanVideChatController.m; sourceTree = "<group>"; };
 		1ADCF99F24BD847100C15503 /* RanDragTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RanDragTableView.h; sourceTree = "<group>"; };
 		1ADCF9A024BD847100C15503 /* RanDragTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RanDragTableView.m; sourceTree = "<group>"; };
-		1AF00CA124D2BFBF005655BA /* hubblecast.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = hubblecast.m4v; sourceTree = "<group>"; };
 		1AF00CA324D2C104005655BA /* RanPlayVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanPlayVideoController.h; sourceTree = "<group>"; };
 		1AF00CA424D2C104005655BA /* RanPlayVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanPlayVideoController.m; sourceTree = "<group>"; };
 		361D00B3AFA230285718C1A2 /* Pods-RanWeChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RanWeChat.release.xcconfig"; path = "Target Support Files/Pods-RanWeChat/Pods-RanWeChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,7 +180,9 @@
 				1A6C5F9A24B80AE0007F190F /* lasttalklist.plist */,
 				1A6C5F9F24B8333E007F190F /* detialtalk.plist */,
 				1A893D6B24E0D85600DAFECF /* friends.plist */,
-				1AF00CA124D2BFBF005655BA /* hubblecast.m4v */,
+				1A0AE2C524EB6DA900D7EE91 /* 1.png */,
+				1A0AE2C424EB6DA900D7EE91 /* nwn.mp4 */,
+				1A0AE2CA24EB6DCA00D7EE91 /* hubblecast.m4v */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -348,11 +354,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A0AE2C724EB6DA900D7EE91 /* 1.png in Resources */,
 				1A893D6C24E0D85600DAFECF /* friends.plist in Resources */,
+				1A0AE2C624EB6DA900D7EE91 /* nwn.mp4 in Resources */,
 				1AD2F07724B6F1F900618CFB /* Assets.xcassets in Resources */,
 				1A6C5FA024B8333E007F190F /* detialtalk.plist in Resources */,
-				1AF00CA224D2BFBF005655BA /* hubblecast.m4v in Resources */,
 				1A6C5F9B24B80AE0007F190F /* lasttalklist.plist in Resources */,
+				1A0AE2CB24EB6DCA00D7EE91 /* hubblecast.m4v in Resources */,
 				1AA7097424C8202200BC83EA /* RanEmotionItem.xib in Resources */,
 				1A16BC5D24E22F2A00C0D02C /* RanInvitedItem.xib in Resources */,
 				1AD2F07A24B6F1F900618CFB /* Main.storyboard in Resources */,
