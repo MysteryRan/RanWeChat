@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.AVKitIBPlugin" version="16097.2"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.AVKitIBPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -817,7 +818,7 @@
                                                                             <rect key="frame" x="1" y="1" width="249" height="139"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
-                                                                                <textField canDrawConcurrently="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GKF-xa-ox8">
+                                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GKF-xa-ox8">
                                                                                     <rect key="frame" x="58" y="20" width="183" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="对方发的信息" id="hRY-MI-gBS">
                                                                                         <font key="font" metaFont="system"/>
@@ -833,7 +834,7 @@
                                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                 </textField>
-                                                                                <textField canDrawConcurrently="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="iaM-uV-MZD">
+                                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="iaM-uV-MZD">
                                                                                     <rect key="frame" x="183" y="103" width="58" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="消息时间" allowsEditingTextAttributes="YES" id="efA-sK-8NH">
                                                                                         <font key="font" metaFont="system"/>
@@ -1215,7 +1216,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="288" height="512"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView canDrawConcurrently="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSb-jF-iIb" customClass="RTCMTLNSVideoView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="eSb-jF-iIb" customClass="RTCMTLNSVideoView">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="512"/>
                                 <subviews>
                                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qT9-AP-Qzd" customClass="RTCMTLNSVideoView">
@@ -1320,31 +1321,10 @@
             </objects>
             <point key="canvasLocation" x="582" y="1761"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="5o8-a4-k7Z">
-            <objects>
-                <windowController storyboardIdentifier="header" id="xcH-UU-dRx" customClass="RanHeaderWindowController" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="nK4-au-HC6">
-                        <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="300" height="300"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <connections>
-                            <outlet property="delegate" destination="xcH-UU-dRx" id="FO2-dL-emG"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="Whz-mu-RVl" kind="relationship" relationship="window.shadowedContentViewController" id="6hT-jR-OUc"/>
-                    </connections>
-                </windowController>
-                <customObject id="qBq-Fw-YMQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="224" y="2132"/>
-        </scene>
         <!--Ran Header View Controller-->
         <scene sceneID="0bQ-iq-nCx">
             <objects>
-                <viewController id="Whz-mu-RVl" customClass="RanHeaderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="headerinside" id="Whz-mu-RVl" customClass="RanHeaderViewController" sceneMemberID="viewController">
                     <view key="view" id="7ge-Pa-1fA">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1430,7 +1410,7 @@
                 </viewController>
                 <customObject id="fQF-dW-xkK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="776" y="2110"/>
+            <point key="canvasLocation" x="677" y="2124"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="2m2-Bz-dpY">
@@ -1510,9 +1490,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="71" horizontalPageScroll="10" verticalLineScroll="71" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpa-fA-BhQ">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="56"/>
                                 <clipView key="contentView" id="uiX-h2-DiM">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="56"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="69" rowSizeStyle="automatic" viewBased="YES" id="IJN-K1-gXW">
@@ -1604,13 +1584,13 @@
                                 </scroller>
                             </scrollView>
                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RK7-k1-ibF">
-                                <rect key="frame" x="240" y="0.0" width="240" height="90"/>
+                                <rect key="frame" x="240" y="0.0" width="240" height="86"/>
                                 <clipView key="contentView" id="t0p-SK-IaO">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="86"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="Y9i-Ph-SJo">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="86"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="cxd-g6-mqV">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -1628,7 +1608,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="KQ7-O4-sMi">
-                                    <rect key="frame" x="224" y="0.0" width="16" height="90"/>
+                                    <rect key="frame" x="224" y="0.0" width="16" height="86"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1653,7 +1633,7 @@
                                 </connections>
                             </button>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBy-iG-vYR">
-                                <rect key="frame" x="20" y="88" width="200" height="22"/>
+                                <rect key="frame" x="20" y="84" width="200" height="22"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="cFj-9P-RZg">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1661,7 +1641,7 @@
                                 </searchFieldCell>
                             </searchField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VLP-2U-5Ze">
-                                <rect key="frame" x="18" y="69" width="50" height="11"/>
+                                <rect key="frame" x="18" y="65" width="50" height="11"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="选择联系人" id="0Np-gf-fco">
                                     <font key="font" metaFont="menu" size="9"/>
                                     <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
@@ -1669,7 +1649,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5tB-U7-bUf">
-                                <rect key="frame" x="258" y="99" width="71" height="16"/>
+                                <rect key="frame" x="258" y="95" width="71" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="选择联系人" id="qPL-DM-Xmr">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1677,7 +1657,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Ol-oY-43O">
-                                <rect key="frame" x="397" y="102" width="75" height="11"/>
+                                <rect key="frame" x="397" y="98" width="75" height="11"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="已选择1个联系人" id="ZOS-fL-ySW">
                                     <font key="font" metaFont="menu" size="9"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

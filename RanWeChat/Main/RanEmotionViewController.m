@@ -33,6 +33,14 @@
     return self.dataSource.count;
 }
 
+- (void)scrollWheel:(NSEvent *)event {
+    if (event.phase == NSEventPhaseEnded) {
+        NSLog(@"111111");
+    }
+    NSLog(@"22222222");
+    [super scrollWheel:event];
+}
+
 //- (void)collectionView:(NSCollectionView *)collectionView didSelectItemsAtIndexPaths:(NSSet<NSIndexPath *> *)indexPaths {
 //
 //}

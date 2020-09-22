@@ -21,6 +21,11 @@
 		1A6C5F9E24B810B8007F190F /* RanLastMessageModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9D24B810B8007F190F /* RanLastMessageModal.m */; };
 		1A6C5FA024B8333E007F190F /* detialtalk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C5F9F24B8333E007F190F /* detialtalk.plist */; };
 		1A6C5FA924B85AEB007F190F /* RanChatDetialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C5FA824B85AEB007F190F /* RanChatDetialCell.m */; };
+		1A71C7D52519C5D60096561C /* INPopoverController-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A71C7CC2519C5D60096561C /* INPopoverController-Info.plist */; };
+		1A71C7D62519C5D60096561C /* INPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A71C7D02519C5D60096561C /* INPopoverController.m */; };
+		1A71C7D72519C5D60096561C /* INPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A71C7D22519C5D60096561C /* INPopoverWindowFrame.m */; };
+		1A71C7D82519C5D60096561C /* INPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A71C7D32519C5D60096561C /* INPopoverWindow.m */; };
+		1A71C7D92519C5D60096561C /* INPopoverParentWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A71C7D42519C5D60096561C /* INPopoverParentWindow.m */; };
 		1A7ADA6D24D1142B0002164D /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD2F0A324B717D900618CFB /* WebRTC.framework */; };
 		1A7ADA6E24D1142B0002164D /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD2F0A324B717D900618CFB /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A85FA8A24CEAF5B00DC3971 /* RanHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA8924CEAF5B00DC3971 /* RanHeaderViewController.m */; };
@@ -89,6 +94,17 @@
 		1A6C5F9F24B8333E007F190F /* detialtalk.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = detialtalk.plist; sourceTree = "<group>"; };
 		1A6C5FA724B85AEB007F190F /* RanChatDetialCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanChatDetialCell.h; sourceTree = "<group>"; };
 		1A6C5FA824B85AEB007F190F /* RanChatDetialCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanChatDetialCell.m; sourceTree = "<group>"; };
+		1A71C7CA2519C5D60096561C /* INPopoverWindowFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INPopoverWindowFrame.h; sourceTree = "<group>"; };
+		1A71C7CB2519C5D60096561C /* INPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INPopoverController.h; sourceTree = "<group>"; };
+		1A71C7CC2519C5D60096561C /* INPopoverController-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "INPopoverController-Info.plist"; sourceTree = "<group>"; };
+		1A71C7CD2519C5D60096561C /* INPopoverControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INPopoverControllerDefines.h; sourceTree = "<group>"; };
+		1A71C7CE2519C5D60096561C /* INPopoverParentWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INPopoverParentWindow.h; sourceTree = "<group>"; };
+		1A71C7CF2519C5D60096561C /* INPopoverWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INPopoverWindow.h; sourceTree = "<group>"; };
+		1A71C7D02519C5D60096561C /* INPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INPopoverController.m; sourceTree = "<group>"; };
+		1A71C7D12519C5D60096561C /* INPopoverPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INPopoverPrefixHeader.pch; sourceTree = "<group>"; };
+		1A71C7D22519C5D60096561C /* INPopoverWindowFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INPopoverWindowFrame.m; sourceTree = "<group>"; };
+		1A71C7D32519C5D60096561C /* INPopoverWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INPopoverWindow.m; sourceTree = "<group>"; };
+		1A71C7D42519C5D60096561C /* INPopoverParentWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INPopoverParentWindow.m; sourceTree = "<group>"; };
 		1A85FA8824CEAF5B00DC3971 /* RanHeaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanHeaderViewController.h; sourceTree = "<group>"; };
 		1A85FA8924CEAF5B00DC3971 /* RanHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RanHeaderViewController.m; sourceTree = "<group>"; };
 		1A85FA8B24CEAF7600DC3971 /* RanHeaderWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RanHeaderWindowController.h; sourceTree = "<group>"; };
@@ -177,6 +193,7 @@
 		1A6C5F9924B80A89007F190F /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				1A71C7C92519C5D60096561C /* INPopoverController */,
 				1A6C5F9A24B80AE0007F190F /* lasttalklist.plist */,
 				1A6C5F9F24B8333E007F190F /* detialtalk.plist */,
 				1A893D6B24E0D85600DAFECF /* friends.plist */,
@@ -185,6 +202,24 @@
 				1A0AE2CA24EB6DCA00D7EE91 /* hubblecast.m4v */,
 			);
 			path = resource;
+			sourceTree = "<group>";
+		};
+		1A71C7C92519C5D60096561C /* INPopoverController */ = {
+			isa = PBXGroup;
+			children = (
+				1A71C7CA2519C5D60096561C /* INPopoverWindowFrame.h */,
+				1A71C7CB2519C5D60096561C /* INPopoverController.h */,
+				1A71C7CC2519C5D60096561C /* INPopoverController-Info.plist */,
+				1A71C7CD2519C5D60096561C /* INPopoverControllerDefines.h */,
+				1A71C7CE2519C5D60096561C /* INPopoverParentWindow.h */,
+				1A71C7CF2519C5D60096561C /* INPopoverWindow.h */,
+				1A71C7D02519C5D60096561C /* INPopoverController.m */,
+				1A71C7D12519C5D60096561C /* INPopoverPrefixHeader.pch */,
+				1A71C7D22519C5D60096561C /* INPopoverWindowFrame.m */,
+				1A71C7D32519C5D60096561C /* INPopoverWindow.m */,
+				1A71C7D42519C5D60096561C /* INPopoverParentWindow.m */,
+			);
+			path = INPopoverController;
 			sourceTree = "<group>";
 		};
 		1AD2F06424B6F1F500618CFB = {
@@ -364,6 +399,7 @@
 				1AA7097424C8202200BC83EA /* RanEmotionItem.xib in Resources */,
 				1A16BC5D24E22F2A00C0D02C /* RanInvitedItem.xib in Resources */,
 				1AD2F07A24B6F1F900618CFB /* Main.storyboard in Resources */,
+				1A71C7D52519C5D60096561C /* INPopoverController-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,11 +456,13 @@
 				1A1642A924C1937F0045FAFA /* RanChatImageView.m in Sources */,
 				1ABDC6A424C938B700947893 /* RanPageControl.m in Sources */,
 				1AD2F08924B6F2F500618CFB /* RanLoginViewController.m in Sources */,
+				1A71C7D92519C5D60096561C /* INPopoverParentWindow.m in Sources */,
 				1ABDC6A324C938B700947893 /* RanButton.m in Sources */,
 				1ADCF9A124BD847100C15503 /* RanDragTableView.m in Sources */,
 				1AA7096F24C81A9900BC83EA /* RanEmotionPageController.m in Sources */,
 				1A6ACD6A24BC4C7E00587CC0 /* RanLastTalkHeaderCell.m in Sources */,
 				1A85FA8A24CEAF5B00DC3971 /* RanHeaderViewController.m in Sources */,
+				1A71C7D62519C5D60096561C /* INPopoverController.m in Sources */,
 				1A6C5F9E24B810B8007F190F /* RanLastMessageModal.m in Sources */,
 				1A893D6A24E0D0BF00DAFECF /* RanInvitedCell.m in Sources */,
 				1A6C5FA924B85AEB007F190F /* RanChatDetialCell.m in Sources */,
@@ -437,12 +475,14 @@
 				1AD2F0B024B71CEA00618CFB /* RanVideoChatWindow.m in Sources */,
 				1AD2F08624B6F2DA00618CFB /* RanLoginWindowController.m in Sources */,
 				1A16BC5C24E22F2A00C0D02C /* RanInvitedItem.m in Sources */,
+				1A71C7D72519C5D60096561C /* INPopoverWindowFrame.m in Sources */,
 				1AD2F09C24B70A3800618CFB /* RanContactRowView.m in Sources */,
 				1A85FA8D24CEAF7600DC3971 /* RanHeaderWindowController.m in Sources */,
 				1A1642AC24C195A60045FAFA /* RanChatRightImageView.m in Sources */,
 				1AA7095D24C7DB9700BC83EA /* RanEmotionViewController.m in Sources */,
 				1AD2F09124B6FB9700618CFB /* RanMainViewController.m in Sources */,
 				1AD2F09F24B70E0700618CFB /* RanHeaderCell.m in Sources */,
+				1A71C7D82519C5D60096561C /* INPopoverWindow.m in Sources */,
 				1AF00CA524D2C104005655BA /* RanPlayVideoController.m in Sources */,
 				1AD2F0A224B711A400618CFB /* RanLastTalkTableView.m in Sources */,
 				1A4BB86D24D00B4D0021CAC1 /* RanPeopleInvitedController.m in Sources */,

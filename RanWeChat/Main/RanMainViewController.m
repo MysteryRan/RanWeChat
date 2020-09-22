@@ -25,6 +25,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Masonry.h"
 
+#import "INPopoverController.h"
+#import "RanHeaderViewController.h"
+
 
 @interface RanMainViewController ()<NSTableViewDataSource,NSTabViewDelegate,NSTextViewDelegate,ranDragFileDlegate,resendDelegate>
 
@@ -45,12 +48,19 @@
 
 @property (weak) IBOutlet NSLayoutConstraint *rightBarSide;
 
+@property (nonatomic, strong)INPopoverController *popoverController;
+
 @end
 
 @implementation RanMainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 头像弹窗
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    RanHeaderViewController *headerViewController = [storyboard instantiateControllerWithIdentifier:@"headerinside"];
+    self.popoverController = [[INPopoverController alloc] initWithContentViewController:headerViewController];
+    self.popoverController.closesWhenApplicationBecomesInactive = YES;
     // Do view setup here.
     self.leftMainBar.wantsLayer = YES;
     self.leftMainBar.layer.backgroundColor = [NSColor colorWithSRGBRed:31 / 255.0 green:140 / 255.0 blue:235 / 255.0 alpha:1].CGColor;
@@ -329,15 +339,11 @@
 }
 
 - (IBAction)headerClick:(NSButton *)sender {
-    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    RanHeaderWindowController *imWindowController = [storyboard instantiateControllerWithIdentifier:@"header"];
-    imWindowController.parentRect = self.view.window.frame;
-    [imWindowController showWindow:nil];
-    
-    
-//    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//    RanHeaderWindowController *imWindowController = [storyboard instantiateControllerWithIdentifier:@"playVideo"];
-//    [imWindowController showWindow:nil];
+    if (self.popoverController.popoverIsVisible) {
+        [self.popoverController closePopover:nil];
+    } else {
+        [self.popoverController presentPopoverFromRect:[sender bounds] inView:sender preferredArrowDirection:INPopoverArrowDirectionRight anchorsToPositionView:YES];
+    }
     
 }
 
