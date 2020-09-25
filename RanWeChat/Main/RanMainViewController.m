@@ -71,6 +71,7 @@
     headerCell.stringValue = @"";
     self.ranLastTalkTableView.tableColumns[0].headerCell = headerCell;
     self.ranLastTalkTableView.rowHeight = 80;
+    [self.ranLastTalkTableView registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
     
     NSTableHeaderView *header = self.ranLastTalkTableView.headerView;
     NSView *searchView = [[NSView alloc] init];
@@ -380,5 +381,29 @@
 - (void)mouseUp:(NSEvent *)event {
     [self.rightBarSide animator].constant = 0;
 }
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+    if (tableView == self.ranLastTalkTableView) {
+        //get the file URLs from the pasteboard
+        NSPasteboard* pb = info.draggingPasteboard;
+
+        //list the file type UTIs we want to accept
+        NSArray* acceptedTypes = [NSArray arrayWithObject:NSFilenamesPboardType];
+
+        NSArray* urls = [pb readObjectsForClasses:[NSArray arrayWithObject:[NSURL class]]
+         options:[NSDictionary dictionaryWithObjectsAndKeys:
+                    [NSNumber numberWithBool:YES],NSPasteboardURLReadingFileURLsOnlyKey,
+                    acceptedTypes, NSPasteboardURLReadingContentsConformToTypesKey,
+                    nil]];
+        NSLog(@"---%@",urls);
+        
+        //only allow drag if there is exactly one file
+        return NSDragOperationCopy;
+    } else {
+        return NSDragOperationNone;
+    }
+
+}
+
 
 @end
