@@ -336,7 +336,7 @@
     
     // 点击事件
 //    [NSApp sendAction:[self action] to:[self target] from:self];
-    [self.previewPanel makeKeyAndOrderFront:self];
+//    [self.previewPanel makeKeyAndOrderFront:self];
 
 }
 

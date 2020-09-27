@@ -136,6 +136,35 @@
     // 右侧sideBar
     self.rightView.wantsLayer = YES;
     self.rightView.layer.backgroundColor = [NSColor redColor].CGColor;
+    
+    // 拖拽
+//    [self.ranLastTalkTableView setDraggingSourceOperationMask:NSDragOperationDelete forLocal:YES];
+//    [self.ranLastTalkTableView setDraggingSourceOperationMask:NSDragOperationDelete forLocal:YES];
+    
+    [self.ranLastTalkTableView registerForDraggedTypes:@[NSPasteboardTypeString]];
+    [self.ranLastTalkTableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:YES];
+}
+
+- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
+    return @"1111";
+}
+
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+    
+    NSTableView *source = info.draggingSource;
+    if (source == self.ranLastTalkTableView) {
+        [tableView setDraggingDestinationFeedbackStyle: NSTableViewDraggingDestinationFeedbackStyleGap];
+    } else {
+        [tableView setDraggingDestinationFeedbackStyle: NSTableViewDraggingDestinationFeedbackStyleRegular];
+    }
+    
+    return  NSDragOperationMove;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
+    // 把添加过来的东西加进来
+    return  YES;
 }
 
 
@@ -382,28 +411,28 @@
     [self.rightBarSide animator].constant = 0;
 }
 
-- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
-    if (tableView == self.ranLastTalkTableView) {
-        //get the file URLs from the pasteboard
-        NSPasteboard* pb = info.draggingPasteboard;
-
-        //list the file type UTIs we want to accept
-        NSArray* acceptedTypes = [NSArray arrayWithObject:NSFilenamesPboardType];
-
-        NSArray* urls = [pb readObjectsForClasses:[NSArray arrayWithObject:[NSURL class]]
-         options:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithBool:YES],NSPasteboardURLReadingFileURLsOnlyKey,
-                    acceptedTypes, NSPasteboardURLReadingContentsConformToTypesKey,
-                    nil]];
-        NSLog(@"---%@",urls);
-        
-        //only allow drag if there is exactly one file
-        return NSDragOperationCopy;
-    } else {
-        return NSDragOperationNone;
-    }
-
-}
+//- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+//    if (tableView == self.ranLastTalkTableView) {
+//        //get the file URLs from the pasteboard
+//        NSPasteboard* pb = info.draggingPasteboard;
+//
+//        //list the file type UTIs we want to accept
+//        NSArray* acceptedTypes = [NSArray arrayWithObject:NSFilenamesPboardType];
+//
+//        NSArray* urls = [pb readObjectsForClasses:[NSArray arrayWithObject:[NSURL class]]
+//         options:[NSDictionary dictionaryWithObjectsAndKeys:
+//                    [NSNumber numberWithBool:YES],NSPasteboardURLReadingFileURLsOnlyKey,
+//                    acceptedTypes, NSPasteboardURLReadingContentsConformToTypesKey,
+//                    nil]];
+//        NSLog(@"---%@",urls);
+//
+//        //only allow drag if there is exactly one file
+//        return NSDragOperationCopy;
+//    } else {
+//        return NSDragOperationNone;
+//    }
+//
+//}
 
 
 @end
